@@ -83,10 +83,23 @@ export default function ThriftStore() {
                   <p className="text-muted-foreground mt-2">West End neighborhood</p>
                 </div>
               </div>
-              <div className="w-full h-48 bg-secondary/20 rounded-lg flex items-center justify-center">
-                <MapPin className="h-12 w-12 text-primary" />
-                <span className="ml-2 text-muted-foreground">Map placeholder</span>
-              </div>
+              <iframe
+                title="Map to Animal Advocates Thrift Shop"
+                src="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220&z=15&output=embed"
+                className="w-full h-48 rounded-lg border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <a
+                href="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
+              >
+                Get directions
+                <ExternalLink className="h-4 w-4" />
+              </a>
             </CardContent>
           </Card>
         </div>
