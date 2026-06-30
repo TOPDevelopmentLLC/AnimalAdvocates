@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { fetchAvailableAnimals, type Animal } from "./shelterluv";
+import { useAnimalsContext } from "./AnimalsContext";
+import { type Animal } from "./shelterluv";
 
 interface UseAnimalsResult {
   animals: Animal[];
@@ -7,32 +7,11 @@ interface UseAnimalsResult {
   error: string | null;
 }
 
-/** Load currently-available ShelterLuv animals of a given species. */
+/**
+ * Get currently-available ShelterLuv animals of a given species from the
+ * shared AnimalsProvider. Data is fetched once on app load, not per page.
+ */
 export function useAnimals(type: "Cat" | "Dog"): UseAnimalsResult {
-  const [animals, setAnimals] = useState<Animal[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    setLoading(true);
-    setError(null);
-
-    fetchAvailableAnimals(type, controller.signal)
-      .then((data) => setAnimals(data))
-      .catch((err) => {
-        if (err?.name === "AbortError") return;
-        setError(
-          "We couldn't load our available animals right now. Please try again shortly."
-        );
-        console.error("Failed to load ShelterLuv animals:", err);
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) setLoading(false);
-      });
-
-    return () => controller.abort();
-  }, [type]);
-
-  return { animals, loading, error };
+  const { cats, dogs, loading, error } = useAnimalsContext();
+  return { animals: type === "Cat" ? cats : dogs, loading, error };
 }
