@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative bg-primary text-white py-20 lg:py-32 min-h-[85vh] flex items-center">
+      <section className="relative bg-primary text-white min-h-[60vh] py-16 flex items-center">
         <HeroSlideshow images={heroImages} />
         {/* Dark gradient overlay keeps the white text readable over photos. */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
