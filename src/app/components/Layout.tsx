@@ -2,10 +2,12 @@ import { Outlet } from "react-router";
 import Header from "./Header";
 import Footer from "./Footer";
 import FloatingDonateButton from "./FloatingDonateButton";
+import ScrollToTop from "./ScrollToTop";
 
 export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <ScrollToTop />
       <Header />
       <main className="flex-1">
         <Outlet />
