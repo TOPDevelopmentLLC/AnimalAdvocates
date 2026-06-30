@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Heart, Users, Home as HomeIcon, ShoppingBag } from "lucide-react";
+import { Heart, Users, Home as HomeIcon } from "lucide-react";
 import { Input } from "../components/ui/input";
 import { Skeleton } from "../components/ui/skeleton";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -165,8 +165,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <ShoppingBag className="h-20 w-20 text-primary" />
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/entrance.webp"
+                    alt="Animal Advocates Thrift Shoppe storefront entrance"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Visit Our Thrift Shop</h3>
                 <p className="text-sm text-muted-foreground mb-4">
