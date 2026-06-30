@@ -150,8 +150,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <HomeIcon className="h-20 w-20 text-primary" />
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/foster.webp"
+                    alt="Volunteer holding a rescued foster kitten"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Foster Saves Lives</h3>
                 <p className="text-sm text-muted-foreground mb-4">
