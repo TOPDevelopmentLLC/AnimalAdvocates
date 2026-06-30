@@ -5,7 +5,16 @@ import { Heart, Users, Home as HomeIcon, ShoppingBag } from "lucide-react";
 import { Input } from "../components/ui/input";
 import { Skeleton } from "../components/ui/skeleton";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { HeroSlideshow } from "../components/HeroSlideshow";
 import { useAnimalsContext } from "../lib/AnimalsContext";
+
+// Background slideshow images for the hero. Files live in /public.
+const heroImages = [
+  "/logo-with-kitten.jpg",
+  "/entrance.JPG",
+  "/sleepy-kitty.jpeg",
+  "/keyboard-sleepy-kitty.JPG",
+];
 
 export default function Home() {
   const { cats, dogs, loading, error } = useAnimalsContext();
@@ -39,7 +48,9 @@ export default function Home() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative bg-primary text-white py-20 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
+        <HeroSlideshow images={heroImages} />
+        {/* Dark gradient overlay keeps the white text readable over photos. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
             Pittsburgh's No-Kill Cat & Dog Rescue Since 1984
