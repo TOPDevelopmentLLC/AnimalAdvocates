@@ -120,8 +120,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-6xl">🐱</span>
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/belly-rubs.webp"
+                    alt="Rescued black cat enjoying belly rubs"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
                 <p className="text-sm text-muted-foreground mb-4">
