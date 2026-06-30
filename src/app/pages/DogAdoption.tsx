@@ -4,62 +4,24 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Badge } from "../components/ui/badge";
+import { Skeleton } from "../components/ui/skeleton";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useAnimals } from "../lib/useAnimals";
 import { CheckCircle2, Home as HomeIcon, Heart, Shield } from "lucide-react";
 
 export default function DogAdoption() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const { animals: dogs, loading, error } = useAnimals("Dog");
 
   const filters = [
     "Puppy",
     "Adult",
     "Senior",
-    "Small",
-    "Medium",
-    "Large",
     "Special Needs",
+    "House Trained",
     "Good with Kids",
-    "Good with Other Dogs",
+    "Good with Dogs",
     "Good with Cats",
-    "Apartment-Friendly",
-  ];
-
-  const dogs = [
-    {
-      name: "Max",
-      age: "4 years",
-      sex: "Male",
-      breed: "Labrador Mix",
-      size: "Large",
-      personality: "Friendly, loves walks and fetch",
-      tags: ["Adult", "Large", "Good with Kids", "Good with Other Dogs"],
-    },
-    {
-      name: "Bella",
-      age: "3 years",
-      sex: "Female",
-      breed: "Beagle",
-      size: "Medium",
-      personality: "Sweet, gentle, loves cuddles",
-      tags: ["Adult", "Medium", "Good with Kids", "Apartment-Friendly"],
-    },
-    {
-      name: "Rocky",
-      age: "5 months",
-      sex: "Male",
-      breed: "Shepherd Mix",
-      size: "Medium",
-      personality: "Playful puppy, very energetic",
-      tags: ["Puppy", "Medium", "Good with Other Dogs"],
-    },
-    {
-      name: "Daisy",
-      age: "10 years",
-      sex: "Female",
-      breed: "Terrier Mix",
-      size: "Small",
-      personality: "Calm senior dog, loves naps",
-      tags: ["Senior", "Small", "Apartment-Friendly", "Good with Cats"],
-    },
   ];
 
   const filteredDogs =
@@ -170,33 +132,69 @@ export default function DogAdoption() {
             )}
           </div>
 
-          {/* Dog Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredDogs.map((dog, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                    <span className="text-6xl">🐕</span>
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                      {dog.name}
-                    </h3>
-                    <div className="text-sm text-muted-foreground">
-                      {dog.age}<br />
-                      {dog.sex}<br />
-                      {dog.breed}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Error state */}
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">{error}</p>
+            </div>
+          )}
 
-          {filteredDogs.length === 0 && (
+          {/* Loading skeletons */}
+          {loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <Skeleton className="w-full aspect-square" />
+                    <div className="p-3 space-y-2">
+                      <Skeleton className="h-4 w-1/2 mx-auto" />
+                      <Skeleton className="h-3 w-3/4 mx-auto" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Dog Grid */}
+          {!loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filteredDogs.map((dog) => (
+                <Card key={dog.id} className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                      {dog.coverPhoto ? (
+                        <ImageWithFallback
+                          src={dog.coverPhoto}
+                          alt={dog.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-6xl">🐕</span>
+                      )}
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                        {dog.name}
+                      </h3>
+                      <div className="text-sm text-muted-foreground">
+                        {dog.age}<br />
+                        {dog.sex}<br />
+                        {dog.breed}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && filteredDogs.length === 0 && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">
-                No dogs match your selected filters. Try adjusting your criteria.
+                {dogs.length === 0
+                  ? "We don't have any dogs available for adoption right now. Please check back soon!"
+                  : "No dogs match your selected filters. Try adjusting your criteria."}
               </p>
             </div>
           )}

@@ -3,14 +3,19 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Heart, Users, Home as HomeIcon, ShoppingBag } from "lucide-react";
 import { Input } from "../components/ui/input";
+import { Skeleton } from "../components/ui/skeleton";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useAnimalsContext } from "../lib/AnimalsContext";
 
 export default function Home() {
-  const featuredPets = [
-    { name: "Luna", species: "Cat", age: "2 years", image: "cat" },
-    { name: "Max", species: "Dog", age: "4 years", image: "dog" },
-    { name: "Oliver", species: "Cat", age: "1 year", image: "cat" },
-    { name: "Bella", species: "Dog", age: "3 years", image: "dog" },
-  ];
+  const { cats, dogs, loading, error } = useAnimalsContext();
+  // Interleave cats and dogs so the featured row isn't all one species, then
+  // take the first 4 available animals from the API.
+  const featuredPets: typeof cats = [];
+  for (let i = 0; featuredPets.length < 4 && (i < cats.length || i < dogs.length); i++) {
+    if (cats[i]) featuredPets.push(cats[i]);
+    if (featuredPets.length < 4 && dogs[i]) featuredPets.push(dogs[i]);
+  }
 
   const newsItems = [
     {
@@ -169,27 +174,70 @@ export default function Home() {
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Adoptable Pets</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {featuredPets.map((pet, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                    <span className="text-6xl">{pet.image === "cat" ? "🐱" : "🐕"}</span>
-                  </div>
-                  <Link to={`/adopt/${pet.species.toLowerCase()}s`}>
-                    <div className="p-3 text-center">
-                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                        {pet.name}
-                      </h3>
-                      <div className="text-sm text-muted-foreground">
-                        {pet.age}<br />
-                        {pet.species}
-                      </div>
+
+          {error && (
+            <p className="text-center text-muted-foreground">{error}</p>
+          )}
+
+          {loading && !error && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <Skeleton className="w-full aspect-square" />
+                    <div className="p-3 space-y-2">
+                      <Skeleton className="h-4 w-1/2 mx-auto" />
+                      <Skeleton className="h-3 w-3/4 mx-auto" />
                     </div>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && featuredPets.length > 0 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {featuredPets.map((pet) => (
+                <Card key={`${pet.type}-${pet.id}`} className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                      {pet.coverPhoto ? (
+                        <ImageWithFallback
+                          src={pet.coverPhoto}
+                          alt={pet.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-6xl">{pet.type === "Cat" ? "🐱" : "🐕"}</span>
+                      )}
+                    </div>
+                    <Link to={`/adopt/${pet.type.toLowerCase()}s`}>
+                      <div className="p-3 text-center">
+                        <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                          {pet.name}
+                        </h3>
+                        <div className="text-sm text-muted-foreground">
+                          {pet.age}<br />
+                          {pet.type}
+                        </div>
+                      </div>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && featuredPets.length === 0 && (
+            <p className="text-center text-muted-foreground">
+              Check back soon for pets available for adoption!
+            </p>
+          )}
+
+          <div className="text-center mt-10">
+            <Link to="/adopt">
+              <Button size="lg" variant="outline">View All Adoptable Pets</Button>
+            </Link>
           </div>
         </div>
       </section>
