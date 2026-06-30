@@ -6,7 +6,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, ExternalLink } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -126,12 +126,25 @@ export default function Contact() {
               </CardContent>
             </Card>
 
-            {/* Map Placeholder */}
-            <div className="w-full h-64 bg-secondary/20 rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-primary mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground">Google Map - 35 Wabash Street, Pittsburgh, PA 15220</p>
-              </div>
+            {/* Map */}
+            <div>
+              <iframe
+                title="Map to Animal Advocates"
+                src="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220&z=15&output=embed"
+                className="w-full h-64 rounded-lg border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <a
+                href="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
+              >
+                Get directions
+                <ExternalLink className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
