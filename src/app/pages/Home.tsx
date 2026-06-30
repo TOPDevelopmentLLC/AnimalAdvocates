@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
-import { Heart, Users, Home as HomeIcon, ShoppingBag } from "lucide-react";
+import { Heart, Users, Home as HomeIcon } from "lucide-react";
 import { Input } from "../components/ui/input";
 import { Skeleton } from "../components/ui/skeleton";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative bg-primary text-white py-20 lg:py-32 min-h-[70vh] flex items-center">
+      <section className="relative bg-primary text-white min-h-[60vh] py-16 flex items-center">
         <HeroSlideshow images={heroImages} />
         {/* Dark gradient overlay keeps the white text readable over photos. */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
@@ -120,8 +120,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-6xl">🐱</span>
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/belly-rubs.webp"
+                    alt="Rescued black cat enjoying belly rubs"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -150,8 +154,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <HomeIcon className="h-20 w-20 text-primary" />
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/foster.webp"
+                    alt="Volunteer holding a rescued foster kitten"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Foster Saves Lives</h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -165,8 +173,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <ShoppingBag className="h-20 w-20 text-primary" />
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/entrance.webp"
+                    alt="Animal Advocates Thrift Shoppe storefront entrance"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Visit Our Thrift Shop</h3>
                 <p className="text-sm text-muted-foreground mb-4">
