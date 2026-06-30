@@ -197,7 +197,7 @@ export default function ThriftStore() {
           </Card>
         </div>
 
-        {/* Photo Gallery Placeholder */}
+        {/* Shop Interior & Featured Items — hidden for now, to be brought back in a future epic.
         <div>
           <h2 className="text-3xl font-bold mb-6">Shop Interior & Featured Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -208,6 +208,7 @@ export default function ThriftStore() {
             ))}
           </div>
         </div>
+        */}
       </div>
     </div>
   );
