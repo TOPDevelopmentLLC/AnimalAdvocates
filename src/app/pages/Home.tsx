@@ -11,7 +11,7 @@ import { useAnimalsContext } from "../lib/AnimalsContext";
 // Background slideshow images for the hero. Files live in /public.
 const heroImages = [
   "/logo-with-kitten.jpg",
-  "/entrance.JPG",
+  "/Alfredo.jpg",
   "/sleepy-kitty.jpeg",
   "/keyboard-sleepy-kitty.JPG",
 ];
