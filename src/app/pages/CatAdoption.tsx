@@ -4,56 +4,24 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Badge } from "../components/ui/badge";
+import { Skeleton } from "../components/ui/skeleton";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useAnimals } from "../lib/useAnimals";
 import { CheckCircle2, Home as HomeIcon, Heart, Shield } from "lucide-react";
 
 export default function CatAdoption() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const { animals: cats, loading, error } = useAnimals("Cat");
 
   const filters = [
     "Kitten",
     "Adult",
     "Senior",
-    "Bonded Pairs",
     "Special Needs",
-    "Indoor-Only",
+    "Litter Box Trained",
     "Good with Kids",
-    "Good with Other Cats",
+    "Good with Cats",
     "Good with Dogs",
-  ];
-
-  const cats = [
-    {
-      name: "Luna",
-      age: "2 years",
-      sex: "Female",
-      breed: "Domestic Shorthair",
-      personality: "Sweet, playful, loves cuddles",
-      tags: ["Adult", "Good with Kids", "Indoor-Only"],
-    },
-    {
-      name: "Oliver",
-      age: "6 months",
-      sex: "Male",
-      breed: "Tabby",
-      personality: "Energetic kitten, very social",
-      tags: ["Kitten", "Good with Other Cats"],
-    },
-    {
-      name: "Whiskers",
-      age: "12 years",
-      sex: "Male",
-      breed: "Domestic Longhair",
-      personality: "Calm, gentle senior cat",
-      tags: ["Senior", "Indoor-Only"],
-    },
-    {
-      name: "Mittens & Socks",
-      age: "3 years",
-      sex: "Female & Male",
-      breed: "Siamese Mix",
-      personality: "Bonded pair, very affectionate",
-      tags: ["Adult", "Bonded Pairs", "Good with Kids"],
-    },
   ];
 
   const filteredCats =
@@ -158,33 +126,69 @@ export default function CatAdoption() {
             )}
           </div>
 
-          {/* Cat Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredCats.map((cat, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                    <span className="text-6xl">🐱</span>
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                      {cat.name}
-                    </h3>
-                    <div className="text-sm text-muted-foreground">
-                      {cat.age}<br />
-                      {cat.sex}<br />
-                      {cat.breed}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Error state */}
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">{error}</p>
+            </div>
+          )}
 
-          {filteredCats.length === 0 && (
+          {/* Loading skeletons */}
+          {loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <Skeleton className="w-full aspect-square" />
+                    <div className="p-3 space-y-2">
+                      <Skeleton className="h-4 w-1/2 mx-auto" />
+                      <Skeleton className="h-3 w-3/4 mx-auto" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Cat Grid */}
+          {!loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filteredCats.map((cat) => (
+                <Card key={cat.id} className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                      {cat.coverPhoto ? (
+                        <ImageWithFallback
+                          src={cat.coverPhoto}
+                          alt={cat.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-6xl">🐱</span>
+                      )}
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                        {cat.name}
+                      </h3>
+                      <div className="text-sm text-muted-foreground">
+                        {cat.age}<br />
+                        {cat.sex}<br />
+                        {cat.breed}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && filteredCats.length === 0 && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">
-                No cats match your selected filters. Try adjusting your criteria.
+                {cats.length === 0
+                  ? "We don't have any cats available for adoption right now. Please check back soon!"
+                  : "No cats match your selected filters. Try adjusting your criteria."}
               </p>
             </div>
           )}
