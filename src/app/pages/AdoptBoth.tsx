@@ -3,9 +3,17 @@ import { Link } from "react-router";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
+import { Skeleton } from "../components/ui/skeleton";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useAnimals } from "../lib/useAnimals";
 
 export default function AdoptBoth() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const cats = useAnimals("Cat");
+  const dogs = useAnimals("Dog");
+
+  const loading = cats.loading || dogs.loading;
+  const error = cats.error ?? dogs.error;
 
   const filters = [
     "Cats",
@@ -17,72 +25,19 @@ export default function AdoptBoth() {
     "Small",
     "Medium",
     "Large",
-    "Bonded Pairs",
     "Special Needs",
     "Good with Kids",
-    "Good with Other Pets",
-    "Apartment-Friendly",
+    "Good with Cats",
+    "Good with Dogs",
   ];
 
-  const pets = [
-    {
-      name: "Luna",
-      species: "Cat",
-      age: "2 years",
-      sex: "Female",
-      breed: "Domestic Shorthair",
-      personality: "Sweet, playful, loves cuddles",
-      tags: ["Cats", "Adult", "Good with Kids"],
-    },
-    {
-      name: "Max",
-      species: "Dog",
-      age: "4 years",
-      sex: "Male",
-      breed: "Labrador Mix",
-      size: "Large",
-      personality: "Friendly, loves walks and fetch",
-      tags: ["Dogs", "Adult", "Large", "Good with Kids"],
-    },
-    {
-      name: "Oliver",
-      species: "Cat",
-      age: "6 months",
-      sex: "Male",
-      breed: "Tabby",
-      personality: "Energetic kitten, very social",
-      tags: ["Cats", "Kitten", "Good with Other Pets"],
-    },
-    {
-      name: "Bella",
-      species: "Dog",
-      age: "3 years",
-      sex: "Female",
-      breed: "Beagle",
-      size: "Medium",
-      personality: "Sweet, gentle, loves cuddles",
-      tags: ["Dogs", "Adult", "Medium", "Apartment-Friendly"],
-    },
-    {
-      name: "Whiskers",
-      species: "Cat",
-      age: "12 years",
-      sex: "Male",
-      breed: "Domestic Longhair",
-      personality: "Calm, gentle senior cat",
-      tags: ["Cats", "Senior", "Adult"],
-    },
-    {
-      name: "Rocky",
-      species: "Dog",
-      age: "5 months",
-      sex: "Male",
-      breed: "Shepherd Mix",
-      size: "Medium",
-      personality: "Playful puppy, very energetic",
-      tags: ["Dogs", "Puppy", "Medium"],
-    },
-  ];
+  // Merge both species into one list. Each card needs a species label and a
+  // "Cats"/"Dogs" tag so the species filter chips work.
+  const pets = [...cats.animals, ...dogs.animals].map((a) => ({
+    ...a,
+    species: a.type,
+    tags: [a.type === "Cat" ? "Cats" : "Dogs", ...a.tags],
+  }));
 
   const filteredPets =
     selectedFilters.length === 0
@@ -148,38 +103,74 @@ export default function AdoptBoth() {
             )}
           </div>
 
-          {/* Pet Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredPets.map((pet, index) => (
-              <Card key={index} className="hover:shadow-md transition-shadow overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center relative">
-                    <span className="text-6xl">{pet.species === "Cat" ? "🐱" : "🐕"}</span>
-                    <Badge variant="secondary" className="absolute top-2 right-2 text-xs">
-                      {pet.species}
-                    </Badge>
-                  </div>
-                  <Link to={`/adopt/${pet.species.toLowerCase()}s`}>
-                    <div className="p-3 text-center">
-                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                        {pet.name}
-                      </h3>
-                      <div className="text-sm text-muted-foreground">
-                        {pet.age}<br />
-                        {pet.sex}<br />
-                        {pet.breed}
-                      </div>
-                    </div>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {/* Error state */}
+          {error && (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground">{error}</p>
+            </div>
+          )}
 
-          {filteredPets.length === 0 && (
+          {/* Loading skeletons */}
+          {loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <CardContent className="p-0">
+                    <Skeleton className="w-full aspect-square" />
+                    <div className="p-3 space-y-2">
+                      <Skeleton className="h-4 w-1/2 mx-auto" />
+                      <Skeleton className="h-3 w-3/4 mx-auto" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {/* Pet Grid */}
+          {!loading && !error && (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filteredPets.map((pet) => (
+                <Card key={`${pet.species}-${pet.id}`} className="hover:shadow-md transition-shadow overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center relative">
+                      {pet.coverPhoto ? (
+                        <ImageWithFallback
+                          src={pet.coverPhoto}
+                          alt={pet.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-6xl">{pet.species === "Cat" ? "🐱" : "🐕"}</span>
+                      )}
+                      <Badge variant="secondary" className="absolute top-2 right-2 text-xs">
+                        {pet.species}
+                      </Badge>
+                    </div>
+                    <Link to={`/adopt/${pet.species.toLowerCase()}s`}>
+                      <div className="p-3 text-center">
+                        <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                          {pet.name}
+                        </h3>
+                        <div className="text-sm text-muted-foreground">
+                          {pet.age}<br />
+                          {pet.sex}<br />
+                          {pet.breed}
+                        </div>
+                      </div>
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && filteredPets.length === 0 && (
             <div className="text-center py-12">
               <p className="text-muted-foreground">
-                No pets match your selected filters. Try adjusting your criteria.
+                {pets.length === 0
+                  ? "We don't have any pets available for adoption right now. Please check back soon!"
+                  : "No pets match your selected filters. Try adjusting your criteria."}
               </p>
             </div>
           )}
