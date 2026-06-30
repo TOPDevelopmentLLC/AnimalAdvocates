@@ -64,7 +64,7 @@ export default function GetInvolved() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Tabs defaultValue="opportunities" className="w-full">
-          <TabsList className="grid w-[80%] mx-auto grid-cols-1 lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 h-auto mb-12 border-2 border-border bg-muted p-1.5 [&_[data-state=active]]:bg-primary [&_[data-state=active]]:text-white [&>*]:w-full">
+          <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 h-auto mb-12 border-2 border-border bg-muted p-1.5 [&_[data-state=active]]:bg-primary [&_[data-state=active]]:text-white [&>*]:w-full">
             <TabsTrigger value="opportunities">Volunteer Opportunities</TabsTrigger>
             <TabsTrigger value="senior-program">Senior to Senior</TabsTrigger>
             <TabsTrigger value="events">Events</TabsTrigger>
