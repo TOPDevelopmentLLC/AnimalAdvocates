@@ -340,7 +340,7 @@ export default function Home() {
       </section>
       */}
 
-      {/* Newsletter Signup */}
+      {/* Newsletter Signup / "Stay Connected" — hidden for now, revisit later.
       <section className="py-16 bg-primary text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
@@ -357,6 +357,7 @@ export default function Home() {
           </form>
         </div>
       </section>
+      */}
     </div>
   );
 }
