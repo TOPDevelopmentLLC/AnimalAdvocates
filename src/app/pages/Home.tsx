@@ -139,8 +139,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-6xl">🐕</span>
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/Daisy.webp"
+                    alt="Adoptable dog Daisy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Dog</h3>
                 <p className="text-sm text-muted-foreground mb-4">
