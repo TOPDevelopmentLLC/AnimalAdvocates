@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import logo from "../../imports/animal_advocates_logo.png";
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
           {/* About Column */}
           <div className="space-y-4">
             <ImageWithFallback
-              src="/src/imports/animal_advocates_logo.png"
+              src={logo}
               alt="Animal Advocates Logo"
               className="h-24 w-48 object-contain"
             />
