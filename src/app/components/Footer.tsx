@@ -66,11 +66,11 @@ export default function Footer() {
                   Pet Resources
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/news" className="text-white/80 hover:text-white transition-colors">
                   News & Stories
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
                   Contact Us

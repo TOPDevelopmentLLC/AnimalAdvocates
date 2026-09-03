@@ -16,7 +16,7 @@ export default function Header() {
     { href: "/thrift-shop", label: "Thrift Shop" },
     { href: "/rehoming", label: "Rehoming" },
     { href: "/resources", label: "Resources" },
-    { href: "/news", label: "News" },
+    // { href: "/news", label: "News" }, // hidden for now, revisit later
     { href: "/contact", label: "Contact" },
   ];
 

@@ -1,19 +1,14 @@
 import { useState } from "react";
 import { Card, CardContent } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 
 export default function News() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories = ["All", "Rescue Story", "Volunteer Spotlight", "Event Recap", "Foster Update", "Organization News"];
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
   const articles = [
     {
       title: "Animal Advocates Furry Forty | 1984–2024",
-      category: "Organization News",
       date: "March 2024",
       excerpt:
         "Join us in celebrating 40 years of no-kill animal rescue in Pittsburgh. From humble beginnings to thousands of lives saved, we reflect on four decades of compassion.",
@@ -21,7 +16,6 @@ export default function News() {
     },
     {
       title: "Super Seniors: Connie & Chester",
-      category: "Foster Update",
       date: "February 2024",
       excerpt:
         "Meet Connie and Chester, a heartwarming story of our Senior to Senior Foster Program in action. How one senior cat brought joy to a Pittsburgh senior's golden years.",
@@ -29,7 +23,6 @@ export default function News() {
     },
     {
       title: "Hangin' on the Catio",
-      category: "Rescue Story",
       date: "January 2024",
       excerpt:
         "Get to know our long-term resident cats who call the Animal Advocates headquarters catio home. These special cats are still looking for their forever families.",
@@ -37,7 +30,6 @@ export default function News() {
     },
     {
       title: "Spring Adoption Event Success",
-      category: "Event Recap",
       date: "December 2025",
       excerpt:
         "Our Spring Adoption Event at PetSmart Waterworks was a huge success! 12 cats and dogs found their forever homes, and we connected with dozens of new volunteers.",
@@ -45,7 +37,6 @@ export default function News() {
     },
     {
       title: "Volunteer Spotlight: Sarah Mitchell",
-      category: "Volunteer Spotlight",
       date: "November 2025",
       excerpt:
         "Meet Sarah, one of our dedicated foster volunteers who has opened her home to over 30 cats in the past two years. Her compassion makes all the difference.",
@@ -53,7 +44,6 @@ export default function News() {
     },
     {
       title: "Max's Emergency Surgery Success",
-      category: "Rescue Story",
       date: "October 2025",
       excerpt:
         "Thanks to donor support, Max received life-saving emergency surgery after being found injured. Today, he's thriving in his forever home and running in Point State Park.",
@@ -62,12 +52,11 @@ export default function News() {
   ];
 
   const filteredArticles = articles.filter((article) => {
-    const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
     const matchesSearch =
       searchQuery === "" ||
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   return (
@@ -84,27 +73,15 @@ export default function News() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Search and Filter */}
+        {/* Search */}
         <div className="mb-8">
           <Input
             type="search"
             placeholder="Search articles..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="max-w-md mb-4"
+            className="max-w-md"
           />
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2"
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Badge>
-            ))}
-          </div>
         </div>
 
         {/* Featured Article */}
@@ -116,9 +93,6 @@ export default function News() {
                   <span className="text-9xl">{filteredArticles[0].image}</span>
                 </div>
                 <div className="p-8 flex flex-col justify-center">
-                  <Badge variant="secondary" className="w-fit mb-3">
-                    {filteredArticles[0].category}
-                  </Badge>
                   <h2 className="text-3xl font-bold mb-3">{filteredArticles[0].title}</h2>
                   <p className="text-sm text-muted-foreground mb-4">{filteredArticles[0].date}</p>
                   <p className="text-muted-foreground mb-6">{filteredArticles[0].excerpt}</p>
@@ -142,9 +116,6 @@ export default function News() {
                     <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
                       <span className="text-7xl">{article.image}</span>
                     </div>
-                    <Badge variant="secondary" className="mb-2 text-xs">
-                      {article.category}
-                    </Badge>
                     <p className="text-xs text-muted-foreground mb-2">{article.date}</p>
                     <h3 className="font-bold text-lg mb-2">{article.title}</h3>
                     <p className="text-sm text-muted-foreground mb-4">{article.excerpt}</p>
@@ -160,7 +131,7 @@ export default function News() {
 
         {filteredArticles.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No articles match your search or filter criteria.</p>
+            <p className="text-muted-foreground">No articles match your search.</p>
           </div>
         )}
 
