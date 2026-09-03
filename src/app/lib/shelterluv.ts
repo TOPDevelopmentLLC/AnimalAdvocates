@@ -1,8 +1,12 @@
 // Typed client for the ShelterLuv API.
 //
-// Requests go to /api/shelterluv/* which the Vite dev server proxies to
-// https://www.shelterluv.com/api/v1/* while injecting the secret X-Api-Key
-// header (see vite.config.ts). The browser never sees the key.
+// In dev, requests go to /api/shelterluv/* which the Vite dev server proxies
+// to https://www.shelterluv.com/api/v1/* while injecting the secret
+// X-Api-Key header (see vite.config.ts). In production there is no dev
+// server, so requests instead go straight to a standalone AWS Lambda
+// Function URL (see VITE_SHELTERLUV_PROXY_URL) that does the same job:
+// paginate, filter, and inject the key server-side. The browser never sees
+// the key either way.
 
 /** Raw animal shape as returned by the ShelterLuv API. */
 export interface ShelterLuvAnimal {
@@ -28,6 +32,11 @@ interface AnimalsResponse {
   animals: ShelterLuvAnimal[];
 }
 
+/** Shape returned by the production proxy Lambda, which normalizes server-side. */
+interface ProxyAnimalsResponse {
+  animals: Animal[];
+}
+
 /** Normalized animal shape consumed by the adoption pages. */
 export interface Animal {
   id: string;
@@ -43,7 +52,12 @@ export interface Animal {
   tags: string[];
 }
 
-const BASE = "/api/shelterluv";
+// In dev, hits the Vite proxy. In production, VITE_SHELTERLUV_PROXY_URL
+// points at the Lambda Function URL (set at build time, e.g. by CI) and the
+// proxy already does pagination + filtering, so a different code path below
+// calls it directly instead of looping client-side.
+const DEV_BASE = "/api/shelterluv";
+const PROD_PROXY_URL = import.meta.env.VITE_SHELTERLUV_PROXY_URL as string | undefined;
 
 /** Convert an age in months into a friendly "X years" / "Y months" string. */
 function formatAge(months: number): string {
@@ -102,6 +116,21 @@ export async function fetchAvailableAnimals(
   type: "Cat" | "Dog",
   signal?: AbortSignal
 ): Promise<Animal[]> {
+  if (PROD_PROXY_URL) {
+    // Production: the Lambda proxy already paginates, filters, and
+    // normalizes server-side — one request gets the final list.
+    const res = await fetch(`${PROD_PROXY_URL}?type=${type}`, {
+      signal,
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) {
+      throw new Error(`ShelterLuv proxy request failed (${res.status})`);
+    }
+    const data: ProxyAnimalsResponse = await res.json();
+    return data.animals;
+  }
+
+  // Dev: talk to the Vite proxy and do pagination + filtering here.
   const limit = 100;
   let offset = 0;
   const all: ShelterLuvAnimal[] = [];
@@ -109,7 +138,7 @@ export async function fetchAvailableAnimals(
   // Guard against an unbounded loop if the API misbehaves.
   for (let page = 0; page < 50; page++) {
     const res = await fetch(
-      `${BASE}/animals?status_type=publishable&limit=${limit}&offset=${offset}`,
+      `${DEV_BASE}/animals?status_type=publishable&limit=${limit}&offset=${offset}`,
       { signal, headers: { Accept: "application/json" } }
     );
     if (!res.ok) {
