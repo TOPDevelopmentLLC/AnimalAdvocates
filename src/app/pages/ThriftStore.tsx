@@ -121,7 +121,7 @@ export default function ThriftStore() {
                 <p className="text-sm text-muted-foreground text-center mb-6">
                   Browse our curated collection of vintage and designer items on Depop.
                 </p>
-                <a href="https://www.depop.com/aacatcuddles/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.depop.com/aacatcuddles1/" target="_blank" rel="noopener noreferrer">
                   <Button className="w-full" variant="outline">
                     Visit Depop Shop
                     <ExternalLink className="h-4 w-4 ml-2" />
@@ -139,7 +139,7 @@ export default function ThriftStore() {
                 <p className="text-sm text-muted-foreground text-center mb-6">
                   Discover unique finds and fashion items on our Poshmark closet.
                 </p>
-                <a href="https://poshmark.com/closet/aacatcuddles" target="_blank" rel="noopener noreferrer">
+                <a href="https://poshmark.com/closet/jidscloset" target="_blank" rel="noopener noreferrer">
                   <Button className="w-full" variant="outline">
                     Visit Poshmark Shop
                     <ExternalLink className="h-4 w-4 ml-2" />

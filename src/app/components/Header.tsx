@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import logo from "../../imports/animal_advocates_logo.png";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Header() {
     { href: "/thrift-shop", label: "Thrift Shop" },
     { href: "/rehoming", label: "Rehoming" },
     { href: "/resources", label: "Resources" },
-    { href: "/news", label: "News" },
+    // { href: "/news", label: "News" }, // hidden for now, revisit later
     { href: "/contact", label: "Contact" },
   ];
 
@@ -31,7 +32,7 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <ImageWithFallback
-              src="/src/imports/animal_advocates_logo.png"
+              src={logo}
               alt="Animal Advocates Logo"
               className="h-24 w-24 object-contain"
             />

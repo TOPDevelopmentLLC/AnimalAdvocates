@@ -26,23 +26,24 @@ export default function Home() {
     if (featuredPets.length < 4 && dogs[i]) featuredPets.push(dogs[i]);
   }
 
-  const newsItems = [
-    {
-      title: "Animal Advocates Celebrates 40 Years",
-      excerpt: "Join us in celebrating the Furry Forty milestone - four decades of no-kill rescue in Pittsburgh.",
-      date: "March 2024",
-    },
-    {
-      title: "Super Seniors Foster Program Success",
-      excerpt: "Meet Connie and Chester - a heartwarming story of our Senior to Senior Foster Program in action.",
-      date: "February 2024",
-    },
-    {
-      title: "Hangin' on the Catio",
-      excerpt: "Get to know our long-term resident cats enjoying life at the headquarters catio.",
-      date: "January 2024",
-    },
-  ];
+  // Hidden for now along with the Latest News section below, revisit later.
+  // const newsItems = [
+  //   {
+  //     title: "Animal Advocates Celebrates 40 Years",
+  //     excerpt: "Join us in celebrating the Furry Forty milestone - four decades of no-kill rescue in Pittsburgh.",
+  //     date: "March 2024",
+  //   },
+  //   {
+  //     title: "Super Seniors Foster Program Success",
+  //     excerpt: "Meet Connie and Chester - a heartwarming story of our Senior to Senior Foster Program in action.",
+  //     date: "February 2024",
+  //   },
+  //   {
+  //     title: "Hangin' on the Catio",
+  //     excerpt: "Get to know our long-term resident cats enjoying life at the headquarters catio.",
+  //     date: "January 2024",
+  //   },
+  // ];
 
   return (
     <div className="flex flex-col">
@@ -139,8 +140,12 @@ export default function Home() {
 
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-6xl">🐕</span>
+                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                  <ImageWithFallback
+                    src="/Daisy.webp"
+                    alt="Adoptable dog Daisy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Dog</h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -312,7 +317,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest News */}
+      {/* Latest News — hidden for now, revisit later.
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Latest News</h2>
@@ -333,8 +338,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* Newsletter Signup */}
+      {/* Newsletter Signup / "Stay Connected" — hidden for now, revisit later.
       <section className="py-16 bg-primary text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
@@ -351,6 +357,7 @@ export default function Home() {
           </form>
         </div>
       </section>
+      */}
     </div>
   );
 }
