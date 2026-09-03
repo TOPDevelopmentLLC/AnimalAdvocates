@@ -47,6 +47,7 @@ jobs:
             --delete \
             --exclude "index.html" \
             --exclude "favicon.svg" \
+            --exclude "AnimalAdvocatesVerticalLogo.webp" \
             --cache-control "public, max-age=31536000, immutable"
 
       - name: Upload index.html (no-cache)
@@ -61,6 +62,13 @@ jobs:
           aws s3 cp dist/favicon.svg s3://${{ vars.S3_BUCKET }}/favicon.svg \
             --cache-control "public, max-age=86400" \
             --content-type "image/svg+xml"
+
+      - name: Upload favicon webp (short cache)
+        if: hashFiles('dist/AnimalAdvocatesVerticalLogo.webp') != ''
+        run: |
+          aws s3 cp dist/AnimalAdvocatesVerticalLogo.webp s3://${{ vars.S3_BUCKET }}/AnimalAdvocatesVerticalLogo.webp \
+            --cache-control "public, max-age=86400" \
+            --content-type "image/webp"
 
       - name: Invalidate CloudFront
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
