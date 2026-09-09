@@ -53,7 +53,7 @@ export default function GetInvolved() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Get Involved with Pittsburgh Animal Rescue</h1>
+          <h1 className="text-4xl font-bold mb-6">Get Involved with Animal Advocates</h1>
           <p className="text-xl text-white/90">
             At the heart of Animal Advocates is our dedicated team of volunteers. With no compensated staff, the
             collective efforts of our volunteers is invaluable to saving the lives of animals in need across the
