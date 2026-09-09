@@ -130,7 +130,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Browse our adoptable cats and kittens. All are vetted, vaccinated, and foster-home raised.
+                  Browse our adoptable cats and kittens. All are vetted and vaccinated.
                 </p>
                 <Link to="/adopt/cats" className="text-primary hover:underline text-sm font-medium">
                   Learn more →
