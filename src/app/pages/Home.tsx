@@ -102,7 +102,7 @@ export default function Home() {
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">
-            About Pittsburgh's No-Kill Volunteer Animal Rescue
+            About Animal Advocates, a Volunteer Animal Rescue in Pittsburgh
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg mb-6 text-foreground/80">
