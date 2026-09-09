@@ -194,6 +194,23 @@ export default function PetResources() {
                     </div>
                   </div>
                 </div>
+
+                <div className="bg-white p-4 rounded-lg">
+                  <h3 className="font-bold mb-3">SHIM (South Hills Interfaith Movement)</h3>
+                  <div className="text-sm">
+                    <div className="flex items-center gap-2">
+                      <ExternalLink className="h-4 w-4 text-primary flex-shrink-0" />
+                      <a
+                        href="https://shimcares.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        shimcares.org
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-white p-4 rounded-lg">
