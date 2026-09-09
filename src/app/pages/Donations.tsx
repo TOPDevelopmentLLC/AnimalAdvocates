@@ -82,7 +82,7 @@ export default function Donations() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-6">
-                In-kind donations help us care for animals daily. Drop off supplies at our headquarters during thrift shop hours.
+                In-kind donations help us care for animals daily. Drop off supplies at our headquarters during Thrift Shop hours.
               </p>
 
               <div className="space-y-3 mb-6">

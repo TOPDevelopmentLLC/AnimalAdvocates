@@ -294,7 +294,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-2">Volunteer</h3>
               <p className="text-muted-foreground mb-4">
-                Join our dedicated team of volunteers. Help with foster care, transportation, thrift shop, or fundraising.
+                Join our dedicated team of volunteers. Help with foster care, transportation, Thrift Shop, or fundraising.
               </p>
               <Link to="/get-involved">
                 <Button variant="outline">Get Involved</Button>
