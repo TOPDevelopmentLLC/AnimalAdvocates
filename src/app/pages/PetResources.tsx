@@ -1,8 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { ShoppingBag, Dog, UtensilsCrossed, MapPin, Phone, Mail } from "lucide-react";
+import { ShoppingBag, Dog, UtensilsCrossed, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+
+/**
+ * A single directory listing. Every field except the name is optional —
+ * entries vary in what contact details the rescue has for them.
+ */
+interface ResourceListing {
+  name: string;
+  address?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+  websiteLabel?: string;
+}
 
 export default function PetResources() {
-  const petSupplies = [
+  const petSupplies: ResourceListing[] = [
     {
       name: "Pet Supplies Plus – Bethel Park",
       address: "5229 Library Road, Bethel Park, PA 15102",
@@ -15,11 +28,16 @@ export default function PetResources() {
     },
   ];
 
-  const trainingServices = [
+  const trainingServices: ResourceListing[] = [
     {
       name: "Parkway Pet Lodge and Training",
       address: "66 Economy Grade Road, Coraopolis, PA 15108",
       phone: "724-457-0942",
+    },
+    {
+      name: "Animal Elegance",
+      website: "https://www.facebook.com/AnimalEleganceInc/",
+      websiteLabel: "Find them on Facebook",
     },
   ];
 
@@ -96,12 +114,27 @@ export default function PetResources() {
                         </a>
                       </div>
                     )}
-                    <div className="flex items-center gap-2 text-sm">
-                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                      <a href={`tel:${service.phone}`} className="text-primary hover:underline">
-                        {service.phone}
-                      </a>
-                    </div>
+                    {service.phone && (
+                      <div className="flex items-center gap-2 text-sm">
+                        <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                        <a href={`tel:${service.phone}`} className="text-primary hover:underline">
+                          {service.phone}
+                        </a>
+                      </div>
+                    )}
+                    {service.website && (
+                      <div className="flex items-center gap-2 text-sm">
+                        <ExternalLink className="h-4 w-4 text-primary flex-shrink-0" />
+                        <a
+                          href={service.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          {service.websiteLabel ?? service.website}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
