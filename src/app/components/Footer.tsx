@@ -16,7 +16,7 @@ export default function Footer() {
               className="h-24 w-48 object-contain"
             />
             <p className="text-sm text-white/80">
-              Pittsburgh's volunteer-run, no-kill cat and dog rescue serving Allegheny County for over 40 years.
+              Pittsburgh's volunteer-run, no-kill cat and dog rescue serving the Pittsburgh community and surrounding areas for over 40 years.
             </p>
           </div>
 

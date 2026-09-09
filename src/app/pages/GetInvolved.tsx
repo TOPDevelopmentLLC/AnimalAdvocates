@@ -57,7 +57,7 @@ export default function GetInvolved() {
           <p className="text-xl text-white/90">
             At the heart of Animal Advocates is our dedicated team of volunteers. With no compensated staff, the
             collective efforts of our volunteers is invaluable to saving the lives of animals in need across the
-            Pittsburgh region.
+            Pittsburgh community and surrounding areas.
           </p>
         </div>
       </section>

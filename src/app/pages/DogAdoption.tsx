@@ -49,7 +49,7 @@ export default function DogAdoption() {
     {
       question: "Do you adopt outside of the Pittsburgh area?",
       answer:
-        "We primarily serve the greater Pittsburgh region and Allegheny County. Adoptions outside this area are considered on a case-by-case basis.",
+        "We primarily serve the Pittsburgh community and surrounding areas. Adoptions outside this area are considered on a case-by-case basis.",
     },
     {
       question: "What if my new dog doesn't get along with my current pet?",

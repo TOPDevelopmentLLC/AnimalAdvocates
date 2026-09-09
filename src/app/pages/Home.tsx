@@ -57,7 +57,7 @@ export default function Home() {
             Animal Advocates: Pittsburgh's Cat & Dog Rescue Since 1984
           </h1>
           <p className="text-xl lg:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
-            Compassion in action — rescuing, fostering, and rehoming companion animals across the Pittsburgh region for over 40 years
+            Compassion in action — rescuing, fostering, and rehoming companion animals across the Pittsburgh community and surrounding areas for over 40 years
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/adopt">
@@ -106,7 +106,7 @@ export default function Home() {
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg mb-6 text-foreground/80">
-              Animal Advocates is a nonprofit, all-volunteer, Pittsburgh-based animal welfare organization involved in the rescue, care, and placement of companion cats and dogs. Serving the Pittsburgh area since 1984, we have adhered to a no-kill policy and engaged in community-based advocacy on behalf of animals since our inception.
+              Animal Advocates is a nonprofit, all-volunteer, Pittsburgh-based animal welfare organization involved in the rescue, care, and placement of companion cats and dogs. Serving the Pittsburgh community and surrounding areas since 1984, we have adhered to a no-kill policy and engaged in community-based advocacy on behalf of animals since our inception.
             </p>
             <p className="text-lg mb-6 text-foreground/80">
               We aim to provide high-quality care for the well-being of rescued cats and dogs until they are placed in forever homes. Except for a limited number of cats fostered at our headquarters in the West End, our adoptable animals are cared for in loving volunteer foster homes.
