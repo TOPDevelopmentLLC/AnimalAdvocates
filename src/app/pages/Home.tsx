@@ -54,7 +54,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Pittsburgh's No-Kill Cat & Dog Rescue Since 1984
+            Pittsburgh's Cat & Dog Rescue Since 1984
           </h1>
           <p className="text-xl lg:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
             Compassion in action — rescuing, fostering, and rehoming companion animals across the Pittsburgh region for over 40 years
@@ -102,7 +102,7 @@ export default function Home() {
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">
-            About Pittsburgh's No-Kill Volunteer Animal Rescue
+            About Pittsburgh's Volunteer Animal Rescue
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg mb-6 text-foreground/80">
