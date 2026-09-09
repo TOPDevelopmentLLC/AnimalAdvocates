@@ -106,6 +106,22 @@ export default function ThriftStore() {
         {/* Donation Guidelines */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Donate Items to Our Thrift Shop</h2>
+
+          {/* Animal-products policy. The client asked for this to appear on the
+              Thrift Shop page in some form; wording is theirs. */}
+          <Card className="mb-6 bg-primary/5 border-primary/20">
+            <CardContent className="p-6">
+              <h3 className="font-bold mb-3">Our Donation Policy on Animal Products</h3>
+              <p className="text-sm text-muted-foreground">
+                Since its founding in 1984, Animal Advocates has remained committed to a
+                no-kill policy and advocacy on behalf of animals. In accordance with this
+                philosophy and our mission statement, please be advised that we do not
+                accept donations of merchandise made from animal products, such as fur,
+                leather, down or silk.
+              </p>
+            </CardContent>
+          </Card>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="bg-green-50">
               <CardContent className="p-6">
