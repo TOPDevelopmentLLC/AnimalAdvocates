@@ -61,11 +61,6 @@ export default function DogAdoption() {
       answer:
         "Occasionally! Puppy availability varies. Check our available dogs regularly or submit an application to be notified when puppies become available.",
     },
-    {
-      question: "Are your dogs good in apartments?",
-      answer:
-        "Many of our dogs are apartment-friendly, especially smaller breeds and lower-energy adults. Filter by 'Apartment-Friendly' to see suitable options.",
-    },
   ];
 
   return (
@@ -315,8 +310,8 @@ export default function DogAdoption() {
           </div>
         </div>
 
-        {/* Senior Dog & Apartment Callouts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        {/* Senior Dog Callout */}
+        <div className="mb-16">
           <Card className="bg-secondary/10">
             <CardContent className="p-6">
               <h3 className="text-xl font-bold mb-3">Senior Dog Adoption in Pittsburgh</h3>
@@ -330,16 +325,6 @@ export default function DogAdoption() {
                   Senior to Senior Foster Program
                 </Link>
                 .
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-secondary/10">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold mb-3">Apartment-Friendly Dogs in Pittsburgh</h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                Many of our dogs are perfect for apartment living! Look for smaller breeds and lower-energy adults. Use
-                the "Apartment-Friendly" filter above to find your match.
               </p>
             </CardContent>
           </Card>
