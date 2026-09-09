@@ -1,9 +1,28 @@
+import { useSearchParams } from "react-router";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Truck, ShoppingBag, Megaphone, Calendar, CheckCircle2 } from "lucide-react";
 
+/** Tab ids, in display order. Also the accepted ?tab= values. */
+const TAB_VALUES = ["opportunities", "senior-program", "events"] as const;
+type TabValue = (typeof TAB_VALUES)[number];
+
 export default function GetInvolved() {
+  // The active tab is driven by ?tab= so other pages can deep-link straight
+  // to the Senior to Senior program or the events list, and so the tab
+  // survives a refresh or a shared URL. Anything unrecognized falls back to
+  // the first tab.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const activeTab: TabValue = TAB_VALUES.includes(requestedTab as TabValue)
+    ? (requestedTab as TabValue)
+    : "opportunities";
+
+  const handleTabChange = (value: string) => {
+    setSearchParams({ tab: value }, { replace: true });
+  };
+
   const volunteerRoles = [
     {
       icon: Heart,
@@ -63,7 +82,7 @@ export default function GetInvolved() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Tabs defaultValue="opportunities" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 h-auto mb-12 border-2 border-border bg-muted p-1.5 [&_[data-state=active]]:bg-primary [&_[data-state=active]]:text-white [&>*]:w-full">
             <TabsTrigger value="opportunities">Volunteer Opportunities</TabsTrigger>
             <TabsTrigger value="senior-program">Senior to Senior</TabsTrigger>

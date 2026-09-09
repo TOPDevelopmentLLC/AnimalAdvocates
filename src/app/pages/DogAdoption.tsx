@@ -321,7 +321,7 @@ export default function DogAdoption() {
               </p>
               <p className="text-xs text-muted-foreground">
                 Learn more about our{" "}
-                <Link to="/get-involved" className="text-primary hover:underline font-medium">
+                <Link to="/get-involved?tab=senior-program" className="text-primary hover:underline font-medium">
                   Senior to Senior Foster Program
                 </Link>
                 .
