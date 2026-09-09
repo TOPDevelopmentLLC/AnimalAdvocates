@@ -183,7 +183,7 @@ export default function GetInvolved() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      The program is open to Pittsburgh-area seniors (60+) who can provide a safe, loving home for a
+                      The program is open to Pittsburgh-area seniors (65+) who can provide a safe, loving home for a
                       senior pet. No prior pet ownership required.
                     </p>
                     <a href="mailto:animaladvocatespgh294@gmail.com">
