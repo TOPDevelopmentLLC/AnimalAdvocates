@@ -122,7 +122,7 @@ export default function GetInvolved() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="lg" className="w-1/4 bg-accent hover:bg-accent/90 text-white">
+                    <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white">
                       Apply to Volunteer Now
                     </Button>
                   </a>
