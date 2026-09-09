@@ -26,7 +26,7 @@ export default function Donations() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Donate to Pittsburgh's No-Kill Cat & Dog Rescue</h1>
+          <h1 className="text-4xl font-bold mb-6">Donate to Animal Advocates</h1>
           <p className="text-xl text-white/90">
             Every dollar goes directly to caring for rescued cats and dogs in the Pittsburgh community and surrounding areas. As an all-volunteer organization, we have no salaries — your gift becomes vet care, vaccines, food, and forever homes.
           </p>
