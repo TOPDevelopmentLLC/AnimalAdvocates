@@ -28,14 +28,24 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-primary shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
+        <div className="flex items-center justify-between h-24 lg:h-28">
+          {/* Logo + organization name. The name is deliberately prominent —
+              the rescue is frequently confused with other Pittsburgh
+              organizations, so it reads as the primary wordmark. */}
+          <Link to="/" className="flex items-center gap-3 sm:gap-4 min-w-0">
             <ImageWithFallback
               src={logo}
               alt="Animal Advocates Logo"
-              className="h-24 w-24 object-contain"
+              className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28 object-contain flex-shrink-0"
             />
+            <span className="flex flex-col min-w-0">
+              <span className="text-white font-bold leading-tight text-xl sm:text-2xl lg:text-3xl">
+                Animal Advocates
+              </span>
+              <span className="hidden sm:block text-white/80 text-xs lg:text-sm leading-tight">
+                Serving the Pittsburgh community and surrounding areas since 1984
+              </span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -72,7 +82,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-20 bg-primary z-40 overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 top-24 bg-primary z-40 overflow-y-auto">
           <div className="px-4 py-6 space-y-1">
             <Link to="/donate" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full mb-4 bg-white hover:bg-white/90 text-primary">
