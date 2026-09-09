@@ -15,7 +15,7 @@ export default function Adopt() {
       </section>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Cats */}
           <Link to="/adopt/cats">
             <Card className="hover:shadow-xl transition-shadow cursor-pointer h-full">
@@ -44,25 +44,6 @@ export default function Adopt() {
                   Browse our available dogs and puppies ready for their forever homes
                 </p>
                 <div className="text-primary font-medium">View Dogs →</div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Both */}
-          <Link to="/adopt/both">
-            <Card className="hover:shadow-xl transition-shadow cursor-pointer h-full">
-              <CardContent className="p-8 text-center">
-                <div className="w-full h-64 bg-secondary/20 rounded-lg mb-6 flex items-center justify-center">
-                  <div className="flex gap-4">
-                    <span className="text-7xl">🐱</span>
-                    <span className="text-7xl">🐕</span>
-                  </div>
-                </div>
-                <h2 className="text-2xl font-bold mb-3">Both</h2>
-                <p className="text-muted-foreground mb-4">
-                  Browse all our adoptable cats and dogs in one place
-                </p>
-                <div className="text-primary font-medium">View All Pets →</div>
               </CardContent>
             </Card>
           </Link>
