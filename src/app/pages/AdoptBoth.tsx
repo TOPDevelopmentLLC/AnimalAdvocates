@@ -75,7 +75,7 @@ export default function AdoptBoth() {
 
         {/* Available Pets Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">All Available Pets for Adoption in Pittsburgh</h2>
+          <h2 className="text-3xl font-bold mb-6">Available for Adoption at Animal Advocates</h2>
 
           {/* Filters */}
           <div className="mb-8">
