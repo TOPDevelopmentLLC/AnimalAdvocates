@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Card, CardContent } from "../components/ui/card";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export default function Adopt() {
   return (
@@ -20,8 +21,12 @@ export default function Adopt() {
           <Link to="/adopt/cats">
             <Card className="hover:shadow-xl transition-shadow cursor-pointer h-full">
               <CardContent className="p-8 text-center">
-                <div className="w-full h-64 bg-secondary/20 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-9xl">🐱</span>
+                <div className="w-full h-64 bg-secondary/20 rounded-lg mb-6 overflow-hidden">
+                  <ImageWithFallback
+                    src="/belly-rubs.webp"
+                    alt="A rescued cat from Animal Advocates enjoying belly rubs"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h2 className="text-2xl font-bold mb-3">Cats</h2>
                 <p className="text-muted-foreground mb-4">
@@ -36,8 +41,12 @@ export default function Adopt() {
           <Link to="/adopt/dogs">
             <Card className="hover:shadow-xl transition-shadow cursor-pointer h-full">
               <CardContent className="p-8 text-center">
-                <div className="w-full h-64 bg-secondary/20 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-9xl">🐕</span>
+                <div className="w-full h-64 bg-secondary/20 rounded-lg mb-6 overflow-hidden">
+                  <ImageWithFallback
+                    src="/Daisy.webp"
+                    alt="Daisy, an adoptable dog from Animal Advocates"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h2 className="text-2xl font-bold mb-3">Dogs</h2>
                 <p className="text-muted-foreground mb-4">
