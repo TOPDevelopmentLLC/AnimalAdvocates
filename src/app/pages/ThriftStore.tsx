@@ -3,21 +3,21 @@ import { MapPin, Clock, ExternalLink } from "lucide-react";
 
 export default function ThriftStore() {
   const acceptedItems = [
-    "Gently-used women's clothing",
-    "Jewelry and accessories",
-    "Pet items and supplies",
-    "Collectibles and vintage items",
-    "Themed decorations",
+    "Gently-used clothing (women's clothing only, no pants)",
+    "Jewelry",
+    "Collectibles and vintage pieces",
+    "Housewares and kitchenware items",
+    "Themed decorations (in season)",
     "Small appliances",
-    "Kitchenware and housewares",
   ];
 
   const notAcceptedItems = [
-    "Large appliances and furniture",
-    "Computers and printers",
-    "Books, magazines, DVDs, CDs, cassette tapes",
-    "Broken, stained, or torn items",
-    "Items missing parts",
+    "Oversized items such as large appliances or furniture",
+    "Computers or printers",
+    "Books, magazines, DVDs, CDs, and cassette tapes",
+    "Used cushions or anything with stuffing",
+    "Men's and children's clothing",
+    "Items that are broken, stained, torn, or missing parts",
   ];
 
   return (
