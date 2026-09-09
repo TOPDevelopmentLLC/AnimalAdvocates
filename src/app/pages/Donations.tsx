@@ -10,15 +10,16 @@ export default function Donations() {
     { amount: 250, impact: "Underwrites an emergency vet visit" },
   ];
 
+  // Brands are listed deliberately: unbranded requests bring in donations
+  // the rescue cannot use. Dogs are omitted on purpose — they are all in
+  // foster homes and their needs are tailored per animal (see the note
+  // rendered below the list).
   const wishlistItems = [
-    "Dry cat and dog food (premium brands preferred)",
-    "Canned cat and dog food",
-    "Cat litter (clumping and non-clumping)",
-    "Towels and blankets",
-    "Paper towels and cleaning supplies",
+    "Dry cat food (Purina Tender Selects or Purina One Chicken)",
+    "Canned cat food (Fancy Feast or Friskies)",
+    "Adult cat litter (clumping, unscented clay litter)",
+    "Paper towels and cleaning supplies (Rescue brand disinfectant, unscented dish soap, unscented laundry detergent)",
     "Pet toys and treats",
-    "Food and water bowls",
-    "Cat carriers and crates",
   ];
 
   return (
@@ -94,6 +95,29 @@ export default function Donations() {
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              <div className="bg-muted p-4 rounded-lg text-sm mb-6">
+                <p className="font-medium mb-2">What we cannot accept:</p>
+                <p className="text-muted-foreground">
+                  We are unable to take open bags of food, prescription foods, or any
+                  medications.
+                </p>
+              </div>
+
+              <div className="bg-muted p-4 rounded-lg text-sm mb-6">
+                <p className="font-medium mb-2">Donating dog supplies?</p>
+                <p className="text-muted-foreground">
+                  All of our dogs live in foster homes, so we tailor brands and types to
+                  each individual dog. Please{" "}
+                  <a
+                    href="mailto:animaladvocatespgh294@gmail.com?subject=Dog%20supply%20donation"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    email us
+                  </a>{" "}
+                  for an animal-specific list before purchasing.
+                </p>
               </div>
 
               <div className="bg-muted p-4 rounded-lg text-sm">
