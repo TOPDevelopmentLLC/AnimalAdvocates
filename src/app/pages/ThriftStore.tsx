@@ -1,6 +1,5 @@
 import { Card, CardContent } from "../components/ui/card";
-import { Button } from "../components/ui/button";
-import { MapPin, Clock, ShoppingBag, ExternalLink } from "lucide-react";
+import { MapPin, Clock, ExternalLink } from "lucide-react";
 
 export default function ThriftStore() {
   const acceptedItems = [
@@ -102,52 +101,6 @@ export default function ThriftStore() {
               </a>
             </CardContent>
           </Card>
-        </div>
-
-        {/* Shop Online */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Shop Online</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Our volunteers run two specialty online shops featuring vintage and designer clothing, accessories,
-            collectibles, and specialty items. 100% of proceeds support Animal Advocates.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ShoppingBag className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-center mb-3">Shop on Depop</h3>
-                <p className="text-sm text-muted-foreground text-center mb-6">
-                  Browse our curated collection of vintage and designer items on Depop.
-                </p>
-                <a href="https://www.depop.com/aacatcuddles1/" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full" variant="outline">
-                    Visit Depop Shop
-                    <ExternalLink className="h-4 w-4 ml-2" />
-                  </Button>
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ShoppingBag className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-center mb-3">Shop on Poshmark</h3>
-                <p className="text-sm text-muted-foreground text-center mb-6">
-                  Discover unique finds and fashion items on our Poshmark closet.
-                </p>
-                <a href="https://poshmark.com/closet/jidscloset" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full" variant="outline">
-                    Visit Poshmark Shop
-                    <ExternalLink className="h-4 w-4 ml-2" />
-                  </Button>
-                </a>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Donation Guidelines */}
