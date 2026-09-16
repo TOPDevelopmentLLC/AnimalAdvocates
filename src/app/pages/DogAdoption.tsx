@@ -203,16 +203,7 @@ export default function DogAdoption() {
           <h2 className="text-3xl font-bold mb-8 text-center">
             Pittsburgh's Trusted Animal Rescue Since 1984
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HomeIcon className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Foster-Home Raised</h3>
-              <p className="text-sm text-muted-foreground">
-                Our dogs are socialized in real homes with families, not kennels, so they're ready for family life.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
