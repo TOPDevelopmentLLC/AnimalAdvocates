@@ -216,7 +216,7 @@ export default function GetInvolved() {
           {/* Tab 3: Events */}
           <TabsContent value="events">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Upcoming Pittsburgh Animal Rescue Events</h2>
+              <h2 className="text-3xl font-bold mb-6">Upcoming Events for Animal Advocates</h2>
 
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-6 mb-12">
