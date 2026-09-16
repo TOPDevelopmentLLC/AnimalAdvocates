@@ -196,7 +196,7 @@ export default function CatAdoption() {
         {/* Why Adopt From Us */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Pittsburgh's Trusted No-Kill Cat Rescue Since 1984
+            Pittsburgh's Trusted Animal Rescue Since 1984
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
