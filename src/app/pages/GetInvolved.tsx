@@ -1,9 +1,16 @@
+import { useSearchParams } from "react-router";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Truck, ShoppingBag, Megaphone, Calendar, CheckCircle2 } from "lucide-react";
 
+const VALID_TABS = ["opportunities", "senior-program", "events"];
+
 export default function GetInvolved() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const activeTab = VALID_TABS.includes(requestedTab ?? "") ? requestedTab! : "opportunities";
+
   const volunteerRoles = [
     {
       icon: Heart,
@@ -63,7 +70,11 @@ export default function GetInvolved() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Tabs defaultValue="opportunities" className="w-full">
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => setSearchParams(value === "opportunities" ? {} : { tab: value })}
+          className="w-full"
+        >
           <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 h-auto mb-12 border-2 border-border bg-muted p-1.5 [&_[data-state=active]]:bg-primary [&_[data-state=active]]:text-white [&>*]:w-full">
             <TabsTrigger value="opportunities">Volunteer Opportunities</TabsTrigger>
             <TabsTrigger value="senior-program">Senior to Senior</TabsTrigger>

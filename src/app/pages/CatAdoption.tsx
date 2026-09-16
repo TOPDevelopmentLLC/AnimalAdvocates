@@ -309,7 +309,7 @@ export default function CatAdoption() {
             </p>
             <p className="text-sm text-muted-foreground">
               Older adopters interested in fostering rather than adopting can learn more about our{" "}
-              <Link to="/get-involved" className="text-primary hover:underline font-medium">
+              <Link to="/get-involved?tab=senior-program" className="text-primary hover:underline font-medium">
                 Senior to Senior Foster Program
               </Link>
               .
