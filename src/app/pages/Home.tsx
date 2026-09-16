@@ -7,6 +7,7 @@ import { Skeleton } from "../components/ui/skeleton";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { HeroSlideshow } from "../components/HeroSlideshow";
 import { useAnimalsContext } from "../lib/AnimalsContext";
+import { shelterLuvProfileUrl } from "../lib/shelterluv";
 
 // Background slideshow images for the hero. Files live in /public.
 const heroImages = [
@@ -51,7 +52,7 @@ export default function Home() {
       <section className="relative bg-primary text-white min-h-[60vh] py-16 flex items-center">
         <HeroSlideshow images={heroImages} />
         {/* Dark gradient overlay keeps the white text readable over photos. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/30" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
             Pittsburgh's Cat & Dog Rescue Since 1984
@@ -239,9 +240,9 @@ export default function Home() {
                         <span className="text-6xl">{pet.type === "Cat" ? "🐱" : "🐕"}</span>
                       )}
                     </div>
-                    <Link to={`/adopt/${pet.type.toLowerCase()}s`}>
+                    <a href={shelterLuvProfileUrl(pet)} target="_blank" rel="noopener noreferrer">
                       <div className="p-3 text-center">
-                        <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                        <h3 className="font-bold text-primary hover:underline mb-1">
                           {pet.name}
                         </h3>
                         <div className="text-sm text-muted-foreground">
@@ -249,7 +250,7 @@ export default function Home() {
                           {pet.type}
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </CardContent>
                 </Card>
               ))}
