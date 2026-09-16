@@ -149,7 +149,7 @@ export default function GetInvolved() {
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Senior to Senior Foster Program — Pittsburgh</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our Senior to Senior Foster Program pairs senior pets (older cats and dogs) with senior community
+                Our Senior to Senior Foster Program pairs senior pets with senior community
                 members for fostering, helping both humans and animals thrive in their golden years. Animal Advocates
                 covers vet care and supplies.
               </p>
@@ -183,7 +183,7 @@ export default function GetInvolved() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      The program is open to Pittsburgh-area seniors (60+) who can provide a safe, loving home for a
+                      The program is open to Pittsburgh-area seniors who can provide a safe, loving home for a
                       senior pet. No prior pet ownership required.
                     </p>
                     <a href="mailto:animaladvocatespgh294@gmail.com">
@@ -195,7 +195,7 @@ export default function GetInvolved() {
 
               <Card className="bg-secondary/10">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">Success Story: Connie & Chester</h3>
+                  <h3 className="text-xl font-bold mb-4">Cool Story: Connie & Chester</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                     <div className="w-full h-48 bg-secondary/20 rounded-lg flex items-center justify-center">
                       <span className="text-7xl">🐱</span>
