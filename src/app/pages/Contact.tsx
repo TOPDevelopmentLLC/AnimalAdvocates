@@ -8,6 +8,19 @@ import { Textarea } from "../components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, ExternalLink } from "lucide-react";
 
+// Proxies to https://api.thatoneprogrammer.dev/api/v1/email/send, injecting
+// the required X-API-KEY server-side so the browser never sees it.
+const EMAIL_ENDPOINT = "https://kw5f3ncvonsdcfuupoclag5itu0hbgjv.lambda-url.us-east-1.on.aws/";
+
+const SUBJECT_LABELS: Record<string, string> = {
+  adoption: "Adoption Inquiry",
+  volunteer: "Volunteer Inquiry",
+  donation: "Donation Inquiry",
+  rehoming: "Rehoming Inquiry",
+  thrift: "Thrift Shop Inquiry",
+  general: "General Inquiry",
+};
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,11 +29,35 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setStatus("submitting");
+
+    try {
+      const res = await fetch(EMAIL_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          applicationName: "AnimalAdvocates",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: SUBJECT_LABELS[formData.subject] ?? formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Email request failed (${res.status})`);
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -225,8 +262,23 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-accent hover:bg-accent/90">
-                    Send Message
+                  {status === "success" && (
+                    <p className="text-sm text-primary">
+                      Thanks for reaching out! We'll get back to you soon.
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="text-sm text-destructive">
+                      Something went wrong sending your message. Please try again, or email us directly.
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full bg-accent hover:bg-accent/90"
+                  >
+                    {status === "submitting" ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>
