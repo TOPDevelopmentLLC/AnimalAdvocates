@@ -75,9 +75,8 @@ export default function DogAdoption() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-6">Adopt a Dog in Pittsburgh</h1>
           <p className="text-xl text-white/90">
-            Thank you for considering a rescue dog from Animal Advocates! Our volunteer foster families get to know each dog's personality
-            and needs very well, striving to make the best possible match for both animals and adopters in the Pittsburgh
-            region.
+            Thank you for considering a rescue dog from Animal Advocates! Our volunteer foster families get to know each animal's personality
+            and needs very well, striving to make the best possible match for both animals and adopters.
           </p>
         </div>
       </section>
