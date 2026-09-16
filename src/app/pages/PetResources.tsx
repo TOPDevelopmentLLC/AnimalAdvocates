@@ -134,7 +134,7 @@ export default function PetResources() {
                 pet supplies to those in need.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div className="bg-white p-4 rounded-lg">
                   <h3 className="font-bold mb-3">Coraopolis Community Food Pantry</h3>
                   <p className="text-sm text-muted-foreground mb-2">
@@ -166,6 +166,21 @@ export default function PetResources() {
                       <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                       <a href="tel:412-262-4930" className="text-primary hover:underline">
                         412-262-4930
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg">
+                  <h3 className="font-bold mb-3">SHIM</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    https://shimcares.org/ 
+                  </p>
+                  <div className="text-sm">
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                      <a href="tel:412-262-4930" className="text-primary hover:underline">
+                        412-854-9120
                       </a>
                     </div>
                   </div>
