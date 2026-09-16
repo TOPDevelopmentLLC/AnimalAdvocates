@@ -21,6 +21,11 @@ export default function PetResources() {
       address: "66 Economy Grade Road, Coraopolis, PA 15108",
       phone: "724-457-0942",
     },
+    {
+      name: "Animal Elegance",
+      address: "2212 Noblestown Rd #106, Pittsburgh, PA 15205",
+      phone: "412-361-1177"
+    }
   ];
 
   return (
@@ -96,12 +101,16 @@ export default function PetResources() {
                         </a>
                       </div>
                     )} */}
-                    <div className="flex items-center gap-2 text-sm">
-                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                      <a href={`tel:${service.phone}`} className="text-primary hover:underline">
-                        {service.phone}
-                      </a>
-                    </div>
+                    {
+                      service.phone && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                          <a href={`tel:${service.phone}`} className="text-primary hover:underline">
+                            {service.phone}
+                          </a>
+                        </div>
+                      )
+                    }
                   </div>
                 </CardContent>
               </Card>
