@@ -199,11 +199,11 @@ export default function ThriftStore() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
-                  <span>All donations are tax-deductible (501(c)(3)).</span>
+                  <span>All donations are tax-deductible 501(3)(c).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
-                  <span>Drop-off during thrift shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
+                  <span>Drop-off during Thrift Shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
                 </li>
               </ul>
             </CardContent>
