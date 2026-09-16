@@ -29,7 +29,7 @@ export default function ThriftStore() {
           <h1 className="text-4xl font-bold mb-6">Pittsburgh Animal Rescue Thrift Shop</h1>
           <p className="text-xl text-white/90">
             Whether you're looking for a one-of-a-kind collectible, gently-used clothing, housewares, or pet products,
-            support Pittsburgh's animal rescue by shopping our resale boutique. 100% of sales benefit the rescue and care
+            support animal rescue in Pittsburgh by shopping at our resale boutique resale boutique. 100% of sales benefit the rescue and care
             of animals in need.
           </p>
         </div>
