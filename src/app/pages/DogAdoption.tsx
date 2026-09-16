@@ -104,7 +104,7 @@ export default function DogAdoption() {
 
         {/* Available Dogs Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Dogs and Puppies Available for Adoption in Pittsburgh</h2>
+          <h2 className="text-3xl font-bold mb-6">Available for Adoption at Animal Advocates </h2>
 
           {/* Filters */}
           <div className="mb-8">
