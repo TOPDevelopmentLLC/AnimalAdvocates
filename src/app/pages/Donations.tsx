@@ -4,10 +4,10 @@ import { Heart, Package, DollarSign, Gift } from "lucide-react";
 
 export default function Donations() {
   const donationTiers = [
-    { amount: 25, impact: "Covers vaccines for one kitten" },
-    { amount: 50, impact: "Covers a spay/neuter surgery" },
-    { amount: 100, impact: "Sponsors a senior pet's monthly care" },
-    { amount: 250, impact: "Underwrites an emergency vet visit" },
+    { amount: 25, impact: "" },
+    { amount: 50, impact: "" },
+    { amount: 100, impact: "" },
+    { amount: 250, impact: "" },
   ];
 
   const wishlistItems = [
