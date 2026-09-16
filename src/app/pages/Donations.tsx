@@ -11,14 +11,11 @@ export default function Donations() {
   ];
 
   const wishlistItems = [
-    "Dry cat and dog food (premium brands preferred)",
-    "Canned cat and dog food",
-    "Cat litter (clumping and non-clumping)",
-    "Towels and blankets",
-    "Paper towels and cleaning supplies",
+    "Dry cat food (Cat: Purina Tender Selects or Purina One Chicken)",
+    "Canned cat food (Fancy Feast or Friskies)",
+    "Adult cat litter (clumping, unscented brands of clay litter)",
+    "Paper towels and cleaning supplies (Rescue Brand Disinfectant, unscented dish soap and unscented laundry detergent)",
     "Pet toys and treats",
-    "Food and water bowls",
-    "Cat carriers and crates",
   ];
 
   return (
