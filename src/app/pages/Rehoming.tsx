@@ -67,56 +67,6 @@ export default function Rehoming() {
           </Card>
         </div>
 
-        {/* Courtesy Post Information */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Courtesy Post Information</h2>
-          <Card className="mb-6">
-            <CardContent className="p-8">
-              <p className="text-muted-foreground mb-6">
-                In order to help as many animals as possible, Animal Advocates provides courtesy postings for adoptable
-                cats and dogs. Courtesy posts include animals that are not directly associated with or surrendered to
-                Animal Advocates, but are still in need of new homes. For these animals, we offer advertisement on our
-                website for greater exposure.
-              </p>
-
-              <div className="bg-accent/10 p-6 rounded-lg">
-                <h3 className="font-bold mb-4">
-                  For any animal identified as a "Courtesy Post," read the following information:
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">
-                      Unless specifically indicated, Animal Advocates will not handle any part of the adoption process or
-                      collect an adoption contract or fee for the animal.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">
-                      Animal Advocates assumes no liability, financial, or legal responsibility for said animals.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">
-                      The owner will screen all applicants. Contact information will be shared with the private individual
-                      in order to facilitate direct communication between potential adopters and the current owner of the
-                      animal.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Link to="/contact">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white">
-              Request a Courtesy Post
-            </Button>
-          </Link>
-        </div>
-
         {/* Other Resources */}
         <div>
           <h2 className="text-3xl font-bold mb-6">Other Resources</h2>

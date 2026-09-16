@@ -75,10 +75,8 @@ export default function DogAdoption() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl font-bold mb-6">Adopt a Dog in Pittsburgh</h1>
           <p className="text-xl text-white/90">
-            Thank you for considering a rescue dog from Animal Advocates! We've been matching Pittsburgh families with
-            loving, vetted dogs and puppies since 1984. Our volunteer foster families get to know each dog's personality
-            and needs very well, striving to make the best possible match for both animals and adopters in the Pittsburgh
-            region.
+            Thank you for considering a rescue dog from Animal Advocates! Our volunteer foster families get to know each animal's personality
+            and needs very well, striving to make the best possible match for both animals and adopters.
           </p>
         </div>
       </section>
@@ -104,7 +102,7 @@ export default function DogAdoption() {
 
         {/* Available Dogs Section */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Dogs and Puppies Available for Adoption in Pittsburgh</h2>
+          <h2 className="text-3xl font-bold mb-6">Available for Adoption at Animal Advocates </h2>
 
           {/* Filters */}
           <div className="mb-8">
@@ -203,18 +201,9 @@ export default function DogAdoption() {
         {/* Why Adopt From Us */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Pittsburgh's Trusted No-Kill Dog Rescue Since 1984
+            Pittsburgh's Trusted Animal Rescue Since 1984
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <HomeIcon className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Foster-Home Raised</h3>
-              <p className="text-sm text-muted-foreground">
-                Our dogs are socialized in real homes with families, not kennels, so they're ready for family life.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-primary" />
@@ -325,20 +314,10 @@ export default function DogAdoption() {
               </p>
               <p className="text-xs text-muted-foreground">
                 Learn more about our{" "}
-                <Link to="/get-involved" className="text-primary hover:underline font-medium">
+                <Link to="/get-involved?tab=senior-program" className="text-primary hover:underline font-medium">
                   Senior to Senior Foster Program
                 </Link>
                 .
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-secondary/10">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold mb-3">Apartment-Friendly Dogs in Pittsburgh</h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                Many of our dogs are perfect for apartment living! Look for smaller breeds and lower-energy adults. Use
-                the "Apartment-Friendly" filter above to find your match.
               </p>
             </CardContent>
           </Card>

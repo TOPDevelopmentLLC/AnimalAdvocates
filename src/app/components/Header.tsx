@@ -34,7 +34,7 @@ export default function Header() {
             <ImageWithFallback
               src={logo}
               alt="Animal Advocates Logo"
-              className="h-24 w-24 object-contain"
+              className="h-16 w-auto object-contain"
             />
           </Link>
 

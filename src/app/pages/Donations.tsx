@@ -4,21 +4,18 @@ import { Heart, Package, DollarSign, Gift } from "lucide-react";
 
 export default function Donations() {
   const donationTiers = [
-    { amount: 25, impact: "Covers vaccines for one kitten" },
-    { amount: 50, impact: "Covers a spay/neuter surgery" },
-    { amount: 100, impact: "Sponsors a senior pet's monthly care" },
-    { amount: 250, impact: "Underwrites an emergency vet visit" },
+    { amount: 25, impact: "" },
+    { amount: 50, impact: "" },
+    { amount: 100, impact: "" },
+    { amount: 250, impact: "" },
   ];
 
   const wishlistItems = [
-    "Dry cat and dog food (premium brands preferred)",
-    "Canned cat and dog food",
-    "Cat litter (clumping and non-clumping)",
-    "Towels and blankets",
-    "Paper towels and cleaning supplies",
+    "Dry cat food (Cat: Purina Tender Selects or Purina One Chicken)",
+    "Canned cat food (Fancy Feast or Friskies)",
+    "Adult cat litter (clumping, unscented brands of clay litter)",
+    "Paper towels and cleaning supplies (Rescue Brand Disinfectant, unscented dish soap and unscented laundry detergent)",
     "Pet toys and treats",
-    "Food and water bowls",
-    "Cat carriers and crates",
   ];
 
   return (
@@ -26,7 +23,7 @@ export default function Donations() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Donate to Pittsburgh's No-Kill Cat & Dog Rescue</h1>
+          <h1 className="text-4xl font-bold mb-6">Donate to Pittsburgh's Cat & Dog Rescue</h1>
           <p className="text-xl text-white/90">
             Every dollar goes directly to caring for rescued cats and dogs in the Pittsburgh region. As an all-volunteer organization, we have no salaries — your gift becomes vet care, vaccines, food, and forever homes.
           </p>

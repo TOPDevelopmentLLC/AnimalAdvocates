@@ -4,21 +4,22 @@ import { MapPin, Clock, ShoppingBag, ExternalLink } from "lucide-react";
 
 export default function ThriftStore() {
   const acceptedItems = [
-    "Gently-used women's clothing",
-    "Jewelry and accessories",
-    "Pet items and supplies",
-    "Collectibles and vintage items",
-    "Themed decorations",
-    "Small appliances",
-    "Kitchenware and housewares",
+    "gently-used clothing (women’s clothing only, no pants)",
+    "jewelry",
+    "collectibles",
+    "vintage pieces",
+    "housewares",
+    "themed decorations (in season)",
+    "small appliances and kitchenware items"
   ];
 
   const notAcceptedItems = [
-    "Large appliances and furniture",
-    "Computers and printers",
-    "Books, magazines, DVDs, CDs, cassette tapes",
-    "Broken, stained, or torn items",
-    "Items missing parts",
+    "oversized items such as large appliances or furniture",
+    "computers or printers",
+    "books/magazines, DVDs, CDs and cassette tapes",
+    "used cushions/anything with stuffing",
+    "men’s & children’s clothing",
+    "items that are broken, stained, torn or missing parts"
   ];
 
   return (
@@ -29,7 +30,7 @@ export default function ThriftStore() {
           <h1 className="text-4xl font-bold mb-6">Pittsburgh Animal Rescue Thrift Shop</h1>
           <p className="text-xl text-white/90">
             Whether you're looking for a one-of-a-kind collectible, gently-used clothing, housewares, or pet products,
-            support Pittsburgh's animal rescue by shopping our resale boutique. 100% of sales benefit the rescue and care
+            support animal rescue in Pittsburgh by shopping at our resale boutique resale boutique. 100% of sales benefit the rescue and care
             of animals in need.
           </p>
         </div>
@@ -105,7 +106,7 @@ export default function ThriftStore() {
         </div>
 
         {/* Shop Online */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Shop Online</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Our volunteers run two specialty online shops featuring vintage and designer clothing, accessories,
@@ -148,7 +149,7 @@ export default function ThriftStore() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </div> */}
 
         {/* Donation Guidelines */}
         <div className="mb-16">
@@ -199,11 +200,15 @@ export default function ThriftStore() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
-                  <span>All donations are tax-deductible (501(c)(3)).</span>
+                  <span>All donations are tax-deductible 501(3)(c).</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
-                  <span>Drop-off during thrift shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
+                  <span>Drop-off during Thrift Shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span>Since its founding in 1984, Animal Advocates has remained committed to a no-kill policy and advocacy on behalf of animals.   In accordance with this philosophy and our mission statement, please be advised that we do not accept donations of merchandise made from animal products, such as fur, leather, down or silk.</span>
                 </li>
               </ul>
             </CardContent>

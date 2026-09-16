@@ -22,20 +22,10 @@ export default function PetResources() {
       phone: "724-457-0942",
     },
     {
-      name: "Fly High Dog Training",
-      email: "flyhighdogtraining@gmail.com",
-      phone: "724-252-2012",
-    },
-    {
-      name: "The Dog Stop – South Hills",
-      address: "1789 West Liberty Avenue, Pittsburgh, PA 15226",
-      phone: "412-343-1171",
-    },
-    {
-      name: "Shaggy Maggy's Paw Spa",
-      address: "1534 Buena Vista Street, Pittsburgh, PA 15212",
-      phone: "412-586-4337",
-    },
+      name: "Animal Elegance",
+      address: "2212 Noblestown Rd #106, Pittsburgh, PA 15205",
+      phone: "412-361-1177"
+    }
   ];
 
   return (
@@ -103,20 +93,24 @@ export default function PetResources() {
                         <span className="text-muted-foreground">{service.address}</span>
                       </div>
                     )}
-                    {service.email && (
+                    {/* {service.email && (
                       <div className="flex items-center gap-2 text-sm">
                         <Mail className="h-4 w-4 text-primary flex-shrink-0" />
                         <a href={`mailto:${service.email}`} className="text-primary hover:underline">
                           {service.email}
                         </a>
                       </div>
-                    )}
-                    <div className="flex items-center gap-2 text-sm">
-                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                      <a href={`tel:${service.phone}`} className="text-primary hover:underline">
-                        {service.phone}
-                      </a>
-                    </div>
+                    )} */}
+                    {
+                      service.phone && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                          <a href={`tel:${service.phone}`} className="text-primary hover:underline">
+                            {service.phone}
+                          </a>
+                        </div>
+                      )
+                    }
                   </div>
                 </CardContent>
               </Card>
@@ -140,7 +134,7 @@ export default function PetResources() {
                 pet supplies to those in need.
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div className="bg-white p-4 rounded-lg">
                   <h3 className="font-bold mb-3">Coraopolis Community Food Pantry</h3>
                   <p className="text-sm text-muted-foreground mb-2">
@@ -172,6 +166,21 @@ export default function PetResources() {
                       <Phone className="h-4 w-4 text-primary flex-shrink-0" />
                       <a href="tel:412-262-4930" className="text-primary hover:underline">
                         412-262-4930
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-lg">
+                  <h3 className="font-bold mb-3">SHIM</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    https://shimcares.org/ 
+                  </p>
+                  <div className="text-sm">
+                    <div className="flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                      <a href="tel:412-262-4930" className="text-primary hover:underline">
+                        412-854-9120
                       </a>
                     </div>
                   </div>

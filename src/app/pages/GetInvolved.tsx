@@ -1,9 +1,16 @@
+import { useSearchParams } from "react-router";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Truck, ShoppingBag, Megaphone, Calendar, CheckCircle2 } from "lucide-react";
 
+const VALID_TABS = ["opportunities", "senior-program", "events"];
+
 export default function GetInvolved() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const requestedTab = searchParams.get("tab");
+  const activeTab = VALID_TABS.includes(requestedTab ?? "") ? requestedTab! : "opportunities";
+
   const volunteerRoles = [
     {
       icon: Heart,
@@ -53,7 +60,7 @@ export default function GetInvolved() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Get Involved with Pittsburgh Animal Rescue</h1>
+          <h1 className="text-4xl font-bold mb-6">Get Involved with Animal Rescue in Pittsburgh</h1>
           <p className="text-xl text-white/90">
             At the heart of Animal Advocates is our dedicated team of volunteers. With no compensated staff, the
             collective efforts of our volunteers is invaluable to saving the lives of animals in need across the
@@ -63,7 +70,11 @@ export default function GetInvolved() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Tabs defaultValue="opportunities" className="w-full">
+        <Tabs
+          value={activeTab}
+          onValueChange={(value) => setSearchParams(value === "opportunities" ? {} : { tab: value })}
+          className="w-full"
+        >
           <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 lg:grid-cols-[repeat(3,minmax(0,1fr))] gap-1.5 h-auto mb-12 border-2 border-border bg-muted p-1.5 [&_[data-state=active]]:bg-primary [&_[data-state=active]]:text-white [&>*]:w-full">
             <TabsTrigger value="opportunities">Volunteer Opportunities</TabsTrigger>
             <TabsTrigger value="senior-program">Senior to Senior</TabsTrigger>
@@ -122,7 +133,7 @@ export default function GetInvolved() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="lg" className="w-1/4 bg-accent hover:bg-accent/90 text-white">
+                    <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white">
                       Apply to Volunteer Now
                     </Button>
                   </a>
@@ -149,7 +160,7 @@ export default function GetInvolved() {
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Senior to Senior Foster Program — Pittsburgh</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our Senior to Senior Foster Program pairs senior pets (older cats and dogs) with senior community
+                Our Senior to Senior Foster Program pairs senior pets with senior community
                 members for fostering, helping both humans and animals thrive in their golden years. Animal Advocates
                 covers vet care and supplies.
               </p>
@@ -183,7 +194,7 @@ export default function GetInvolved() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      The program is open to Pittsburgh-area seniors (60+) who can provide a safe, loving home for a
+                      The program is open to Pittsburgh-area seniors who can provide a safe, loving home for a
                       senior pet. No prior pet ownership required.
                     </p>
                     <a href="mailto:animaladvocatespgh294@gmail.com">
@@ -195,7 +206,7 @@ export default function GetInvolved() {
 
               <Card className="bg-secondary/10">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">Success Story: Connie & Chester</h3>
+                  <h3 className="text-xl font-bold mb-4">Cool Story: Connie & Chester</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                     <div className="w-full h-48 bg-secondary/20 rounded-lg flex items-center justify-center">
                       <span className="text-7xl">🐱</span>
@@ -216,7 +227,7 @@ export default function GetInvolved() {
           {/* Tab 3: Events */}
           <TabsContent value="events">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Upcoming Pittsburgh Animal Rescue Events</h2>
+              <h2 className="text-3xl font-bold mb-6">Upcoming Events for Animal Advocates</h2>
 
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-6 mb-12">
