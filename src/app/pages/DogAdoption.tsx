@@ -321,16 +321,6 @@ export default function DogAdoption() {
               </p>
             </CardContent>
           </Card>
-
-          <Card className="bg-secondary/10">
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold mb-3">Apartment-Friendly Dogs in Pittsburgh</h3>
-              <p className="text-sm text-muted-foreground mb-3">
-                Many of our dogs are perfect for apartment living! Look for smaller breeds and lower-energy adults. Use
-                the "Apartment-Friendly" filter above to find your match.
-              </p>
-            </CardContent>
-          </Card>
         </div>
 
         {/* FAQ */}
