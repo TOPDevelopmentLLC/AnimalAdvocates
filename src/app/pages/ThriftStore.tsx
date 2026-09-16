@@ -105,7 +105,7 @@ export default function ThriftStore() {
         </div>
 
         {/* Shop Online */}
-        <div className="mb-16">
+        {/* <div className="mb-16">
           <h2 className="text-3xl font-bold mb-6">Shop Online</h2>
           <p className="text-lg text-muted-foreground mb-8">
             Our volunteers run two specialty online shops featuring vintage and designer clothing, accessories,
@@ -148,7 +148,7 @@ export default function ThriftStore() {
               </CardContent>
             </Card>
           </div>
-        </div>
+        </div> */}
 
         {/* Donation Guidelines */}
         <div className="mb-16">
