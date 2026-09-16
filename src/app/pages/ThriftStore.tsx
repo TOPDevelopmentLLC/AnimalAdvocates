@@ -4,21 +4,22 @@ import { MapPin, Clock, ShoppingBag, ExternalLink } from "lucide-react";
 
 export default function ThriftStore() {
   const acceptedItems = [
-    "Gently-used women's clothing",
-    "Jewelry and accessories",
-    "Pet items and supplies",
-    "Collectibles and vintage items",
-    "Themed decorations",
-    "Small appliances",
-    "Kitchenware and housewares",
+    "gently-used clothing (women’s clothing only, no pants)",
+    "jewelry",
+    "collectibles",
+    "vintage pieces",
+    "housewares",
+    "themed decorations (in season)",
+    "small appliances and kitchenware items"
   ];
 
   const notAcceptedItems = [
-    "Large appliances and furniture",
-    "Computers and printers",
-    "Books, magazines, DVDs, CDs, cassette tapes",
-    "Broken, stained, or torn items",
-    "Items missing parts",
+    "oversized items such as large appliances or furniture",
+    "computers or printers",
+    "books/magazines, DVDs, CDs and cassette tapes",
+    "used cushions/anything with stuffing",
+    "men’s & children’s clothing",
+    "items that are broken, stained, torn or missing parts"
   ];
 
   return (
@@ -204,6 +205,10 @@ export default function ThriftStore() {
                 <li className="flex items-start gap-2">
                   <span className="text-primary">•</span>
                   <span>Drop-off during Thrift Shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">•</span>
+                  <span>Since its founding in 1984, Animal Advocates has remained committed to a no-kill policy and advocacy on behalf of animals.   In accordance with this philosophy and our mission statement, please be advised that we do not accept donations of merchandise made from animal products, such as fur, leather, down or silk.</span>
                 </li>
               </ul>
             </CardContent>
