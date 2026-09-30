@@ -6,7 +6,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, ExternalLink } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, ExternalLink, Send } from "lucide-react";
 
 // Proxies to https://api.thatoneprogrammer.dev/api/v1/email/send, injecting
 // the required X-API-KEY server-side so the browser never sees it.
@@ -116,6 +116,23 @@ export default function Contact() {
                       className="text-sm text-primary hover:underline break-all"
                     >
                       animaladvocatespgh294@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Send className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold mb-1">Newsletter</h3>
+                    <a
+                      href="https://animaladvocates.us3.list-manage.com/subscribe?u=96c7d0868cf5fd024c6055a3d&id=4c3cbf2206"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-primary hover:underline"
+                    >
+                      Sign up for our newsletter
                     </a>
                   </div>
                 </div>
