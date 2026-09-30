@@ -113,6 +113,30 @@ export default function Donations() {
                     </li>
                   ))}
                 </ul>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <a
+                    href="https://www.chewy.com/g/animal-advocates-inc_b70932977#wish-list&wishlistsortby=DEFAULT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                      Chewy Wishlist
+                    </Button>
+                  </a>
+
+                  <a
+                    href="https://www.amazon.com/hz/wishlist/ls/2T69APVNUFL0C?ref_=wl_share&scrlybrkr=28100f07"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                      Amazon Wishlist
+                    </Button>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-muted p-4 rounded-lg text-sm">
