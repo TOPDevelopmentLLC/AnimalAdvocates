@@ -131,25 +131,25 @@ export default function AdoptBoth() {
           {!loading && !error && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredPets.map((pet) => (
-                <Card key={`${pet.species}-${pet.id}`} className="hover:shadow-md transition-shadow overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center relative">
-                      {pet.coverPhoto ? (
-                        <ImageWithFallback
-                          src={pet.coverPhoto}
-                          alt={pet.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-6xl">{pet.species === "Cat" ? "🐱" : "🐕"}</span>
-                      )}
-                      <Badge variant="secondary" className="absolute top-2 right-2 text-xs">
-                        {pet.species}
-                      </Badge>
-                    </div>
-                    <Link to={`/adopt/${pet.species.toLowerCase()}s`}>
+                <Link key={`${pet.species}-${pet.id}`} to={`/adopt/pet/${pet.id}`}>
+                  <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center relative">
+                        {pet.coverPhoto ? (
+                          <ImageWithFallback
+                            src={pet.coverPhoto}
+                            alt={pet.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-6xl">{pet.species === "Cat" ? "🐱" : "🐕"}</span>
+                        )}
+                        <Badge variant="secondary" className="absolute top-2 right-2 text-xs">
+                          {pet.species}
+                        </Badge>
+                      </div>
                       <div className="p-3 text-center">
-                        <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                        <h3 className="font-bold text-primary hover:underline mb-1">
                           {pet.name}
                         </h3>
                         <div className="text-sm text-muted-foreground">
@@ -158,9 +158,9 @@ export default function AdoptBoth() {
                           {pet.breed}
                         </div>
                       </div>
-                    </Link>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}

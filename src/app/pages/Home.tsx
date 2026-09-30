@@ -226,22 +226,22 @@ export default function Home() {
           {!loading && !error && featuredPets.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {featuredPets.map((pet) => (
-                <Card key={`${pet.type}-${pet.id}`} className="hover:shadow-md transition-shadow overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                      {pet.coverPhoto ? (
-                        <ImageWithFallback
-                          src={pet.coverPhoto}
-                          alt={pet.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-6xl">{pet.type === "Cat" ? "🐱" : "🐕"}</span>
-                      )}
-                    </div>
-                    <Link to={`/adopt/${pet.type.toLowerCase()}s`}>
+                <Link key={`${pet.type}-${pet.id}`} to={`/adopt/pet/${pet.id}`}>
+                  <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                        {pet.coverPhoto ? (
+                          <ImageWithFallback
+                            src={pet.coverPhoto}
+                            alt={pet.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-6xl">{pet.type === "Cat" ? "🐱" : "🐕"}</span>
+                        )}
+                      </div>
                       <div className="p-3 text-center">
-                        <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
+                        <h3 className="font-bold text-primary hover:underline mb-1">
                           {pet.name}
                         </h3>
                         <div className="text-sm text-muted-foreground">
@@ -249,9 +249,9 @@ export default function Home() {
                           {pet.type}
                         </div>
                       </div>
-                    </Link>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}

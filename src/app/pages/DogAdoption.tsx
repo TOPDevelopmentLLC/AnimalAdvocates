@@ -158,31 +158,33 @@ export default function DogAdoption() {
           {!loading && !error && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredDogs.map((dog) => (
-                <Card key={dog.id} className="hover:shadow-md transition-shadow overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                      {dog.coverPhoto ? (
-                        <ImageWithFallback
-                          src={dog.coverPhoto}
-                          alt={dog.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-6xl">🐕</span>
-                      )}
-                    </div>
-                    <div className="p-3 text-center">
-                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                        {dog.name}
-                      </h3>
-                      <div className="text-sm text-muted-foreground">
-                        {dog.age}<br />
-                        {dog.sex}<br />
-                        {dog.breed}
+                <Link key={dog.id} to={`/adopt/pet/${dog.id}`}>
+                  <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                        {dog.coverPhoto ? (
+                          <ImageWithFallback
+                            src={dog.coverPhoto}
+                            alt={dog.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-6xl">🐕</span>
+                        )}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="p-3 text-center">
+                        <h3 className="font-bold text-primary hover:underline mb-1">
+                          {dog.name}
+                        </h3>
+                        <div className="text-sm text-muted-foreground">
+                          {dog.age}<br />
+                          {dog.sex}<br />
+                          {dog.breed}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}

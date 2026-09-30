@@ -153,31 +153,33 @@ export default function CatAdoption() {
           {!loading && !error && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredCats.map((cat) => (
-                <Card key={cat.id} className="hover:shadow-md transition-shadow overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
-                      {cat.coverPhoto ? (
-                        <ImageWithFallback
-                          src={cat.coverPhoto}
-                          alt={cat.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-6xl">🐱</span>
-                      )}
-                    </div>
-                    <div className="p-3 text-center">
-                      <h3 className="font-bold text-primary hover:underline cursor-pointer mb-1">
-                        {cat.name}
-                      </h3>
-                      <div className="text-sm text-muted-foreground">
-                        {cat.age}<br />
-                        {cat.sex}<br />
-                        {cat.breed}
+                <Link key={cat.id} to={`/adopt/pet/${cat.id}`}>
+                  <Card className="hover:shadow-md transition-shadow overflow-hidden">
+                    <CardContent className="p-0">
+                      <div className="w-full aspect-square bg-secondary/20 flex items-center justify-center">
+                        {cat.coverPhoto ? (
+                          <ImageWithFallback
+                            src={cat.coverPhoto}
+                            alt={cat.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-6xl">🐱</span>
+                        )}
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="p-3 text-center">
+                        <h3 className="font-bold text-primary hover:underline mb-1">
+                          {cat.name}
+                        </h3>
+                        <div className="text-sm text-muted-foreground">
+                          {cat.age}<br />
+                          {cat.sex}<br />
+                          {cat.breed}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           )}
