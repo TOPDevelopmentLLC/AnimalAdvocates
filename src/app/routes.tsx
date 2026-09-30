@@ -7,6 +7,7 @@ import Adopt from "./pages/Adopt";
 import CatAdoption from "./pages/CatAdoption";
 import DogAdoption from "./pages/DogAdoption";
 import AdoptBoth from "./pages/AdoptBoth";
+import PetProfile from "./pages/PetProfile";
 import ThriftStore from "./pages/ThriftStore";
 import Rehoming from "./pages/Rehoming";
 import PetResources from "./pages/PetResources";
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: "adopt/cats", Component: CatAdoption },
       { path: "adopt/dogs", Component: DogAdoption },
       { path: "adopt/both", Component: AdoptBoth },
+      { path: "adopt/pet/:id", Component: PetProfile },
       { path: "thrift-shop", Component: ThriftStore },
       { path: "rehoming", Component: Rehoming },
       { path: "resources", Component: PetResources },

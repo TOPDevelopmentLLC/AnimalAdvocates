@@ -66,6 +66,28 @@ export default function Donations() {
                   Donate via ShelterLuv
                 </Button>
               </a>
+
+              <a
+                href="https://www.paypal.com/us/fundraiser/charity/2220895"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-3"
+              >
+                <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                  Donate via PayPal
+                </Button>
+              </a>
+
+              <a
+                href="https://venmo.com/animaladvocates412"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-3"
+              >
+                <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                  Donate via Venmo
+                </Button>
+              </a>
             </CardContent>
           </Card>
 
@@ -86,11 +108,35 @@ export default function Donations() {
                 <ul className="space-y-2">
                   {wishlistItems.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm">
-                      <span className="text-primary mt-1">•</span>
+                      <span className="text-primary leading-tight">•</span>
                       <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <a
+                    href="https://www.chewy.com/g/animal-advocates-inc_b70932977#wish-list&wishlistsortby=DEFAULT"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                      Chewy Wishlist
+                    </Button>
+                  </a>
+
+                  <a
+                    href="https://www.amazon.com/hz/wishlist/ls/2T69APVNUFL0C?ref_=wl_share&scrlybrkr=28100f07"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                      Amazon Wishlist
+                    </Button>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-muted p-4 rounded-lg text-sm">
