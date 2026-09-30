@@ -119,81 +119,89 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                  <ImageWithFallback
-                    src="/blep.webp"
-                    alt="Rescued gray kitten sticking out its tongue"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Browse our adoptable cats and kittens. All are vetted and vaccinated.
-                </p>
-                <Link to="/adopt/cats" className="text-primary hover:underline text-sm font-medium">
-                  Learn more →
-                </Link>
-              </CardContent>
-            </Card>
+            <Link to="/adopt/cats">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <CardContent className="p-6">
+                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                    <ImageWithFallback
+                      src="/blep.webp"
+                      alt="Rescued gray kitten sticking out its tongue"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Browse our adoptable cats and kittens. All are vetted and vaccinated.
+                  </p>
+                  <span className="text-primary hover:underline text-sm font-medium">
+                    Learn more →
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                  <ImageWithFallback
-                    src="/Daisy.webp"
-                    alt="Adoptable dog Daisy"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Adopt a Dog</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Find your perfect canine companion. All dogs are fully vetted and socialized in foster homes.
-                </p>
-                <Link to="/adopt/dogs" className="text-primary hover:underline text-sm font-medium">
-                  Learn more →
-                </Link>
-              </CardContent>
-            </Card>
+            <Link to="/adopt/dogs">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <CardContent className="p-6">
+                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                    <ImageWithFallback
+                      src="/Daisy.webp"
+                      alt="Adoptable dog Daisy"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Adopt a Dog</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Find your perfect canine companion. All dogs are fully vetted and socialized in foster homes.
+                  </p>
+                  <span className="text-primary hover:underline text-sm font-medium">
+                    Learn more →
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                  <ImageWithFallback
-                    src="/foster.webp"
-                    alt="Volunteer holding a rescued foster kitten"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Foster Saves Lives</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Become a foster family and help animals thrive in a home environment while awaiting adoption.
-                </p>
-                <Link to="/get-involved" className="text-primary hover:underline text-sm font-medium">
-                  Learn more →
-                </Link>
-              </CardContent>
-            </Card>
+            <Link to="/get-involved">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <CardContent className="p-6">
+                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                    <ImageWithFallback
+                      src="/foster.webp"
+                      alt="Volunteer holding a rescued foster kitten"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Foster Saves Lives</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Become a foster family and help animals thrive in a home environment while awaiting adoption.
+                  </p>
+                  <span className="text-primary hover:underline text-sm font-medium">
+                    Learn more →
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <CardContent className="p-6">
-                <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                  <ImageWithFallback
-                    src="/entrance.webp"
-                    alt="Animal Advocates Thrift Shoppe storefront entrance"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Visit Our Thrift Shop</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Shop vintage, designer items, and housewares. 100% of sales support animal rescue.
-                </p>
-                <Link to="/thrift-shop" className="text-primary hover:underline text-sm font-medium">
-                  Learn more →
-                </Link>
-              </CardContent>
-            </Card>
+            <Link to="/thrift-shop">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                <CardContent className="p-6">
+                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                    <ImageWithFallback
+                      src="/entrance.webp"
+                      alt="Animal Advocates Thrift Shoppe storefront entrance"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">Visit Our Thrift Shop</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Shop vintage, designer items, and housewares. 100% of sales support animal rescue.
+                  </p>
+                  <span className="text-primary hover:underline text-sm font-medium">
+                    Learn more →
+                  </span>
+                </CardContent>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
