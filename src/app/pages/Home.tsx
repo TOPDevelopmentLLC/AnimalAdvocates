@@ -123,9 +123,9 @@ export default function Home() {
               <CardContent className="p-6">
                 <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
                   <ImageWithFallback
-                    src="/belly-rubs.webp"
-                    alt="Rescued black cat enjoying belly rubs"
-                    className="w-full h-full object-cover"
+                    src="/blep.webp"
+                    alt="Rescued gray kitten sticking out its tongue"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
