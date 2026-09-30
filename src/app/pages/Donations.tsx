@@ -108,7 +108,7 @@ export default function Donations() {
                 <ul className="space-y-2">
                   {wishlistItems.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm">
-                      <span className="text-primary mt-1">•</span>
+                      <span className="text-primary leading-tight">•</span>
                       <span className="text-muted-foreground">{item}</span>
                     </li>
                   ))}
