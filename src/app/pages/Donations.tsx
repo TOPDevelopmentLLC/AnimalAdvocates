@@ -66,6 +66,28 @@ export default function Donations() {
                   Donate via ShelterLuv
                 </Button>
               </a>
+
+              <a
+                href="https://www.paypal.com/us/fundraiser/charity/2220895"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-3"
+              >
+                <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                  Donate via PayPal
+                </Button>
+              </a>
+
+              <a
+                href="https://venmo.com/animaladvocates412"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-3"
+              >
+                <Button className="w-full bg-accent hover:bg-accent/90 text-white">
+                  Donate via Venmo
+                </Button>
+              </a>
             </CardContent>
           </Card>
 
