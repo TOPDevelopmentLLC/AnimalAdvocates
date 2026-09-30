@@ -5,12 +5,23 @@ import { Card, CardContent } from "../components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Badge } from "../components/ui/badge";
 import { Skeleton } from "../components/ui/skeleton";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+} from "../components/ui/pagination";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { useAnimals } from "../lib/useAnimals";
 import { CheckCircle2, Home as HomeIcon, Heart, Shield } from "lucide-react";
 
+const PAGE_SIZE = 8;
+
 export default function CatAdoption() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [page, setPage] = useState(1);
   const { animals: cats, loading, error } = useAnimals("Cat");
 
   const filters = [
@@ -29,10 +40,19 @@ export default function CatAdoption() {
       ? cats
       : cats.filter((cat) => selectedFilters.some((filter) => cat.tags.includes(filter)));
 
+  const totalPages = Math.max(1, Math.ceil(filteredCats.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const pagedCats = filteredCats.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
   const toggleFilter = (filter: string) => {
     setSelectedFilters((prev) =>
       prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
     );
+    setPage(1);
+  };
+
+  const goToPage = (target: number) => {
+    setPage(Math.min(Math.max(target, 1), totalPages));
   };
 
   const faqs = [
@@ -117,7 +137,10 @@ export default function CatAdoption() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setSelectedFilters([])}
+                onClick={() => {
+                  setSelectedFilters([]);
+                  setPage(1);
+                }}
                 className="mt-3"
               >
                 Clear Filters
@@ -152,7 +175,7 @@ export default function CatAdoption() {
           {/* Cat Grid */}
           {!loading && !error && (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {filteredCats.map((cat) => (
+              {pagedCats.map((cat) => (
                 <Link key={cat.id} to={`/adopt/pet/${cat.id}`}>
                   <Card className="hover:shadow-md transition-shadow overflow-hidden">
                     <CardContent className="p-0">
@@ -192,6 +215,47 @@ export default function CatAdoption() {
                   : "No cats match your selected filters. Try adjusting your criteria."}
               </p>
             </div>
+          )}
+
+          {!loading && !error && totalPages > 1 && (
+            <Pagination className="mt-8">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      goToPage(currentPage - 1);
+                    }}
+                    className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      href="#"
+                      isActive={currentPage === index + 1}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        goToPage(index + 1);
+                      }}
+                    >
+                      {index + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      goToPage(currentPage + 1);
+                    }}
+                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
           )}
         </div>
 
