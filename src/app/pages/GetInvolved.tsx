@@ -40,18 +40,35 @@ export default function GetInvolved() {
 
   const upcomingEvents = [
     {
-      title: "Spring Adoption Event",
-      date: "May 15, 2026",
-      time: "11:00 AM - 3:00 PM",
-      location: "PetSmart Waterworks",
-      description: "Meet adoptable cats and dogs, learn about our rescue, and support Pittsburgh's animal welfare.",
+      title: "Hauntingly Handmade: Black Cat Silhouette Workshop",
+      date: "October 18, 2026",
+      time: "2:00 PM - 3:30 PM",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
+      description:
+        "Feeling creative? Want to embrace the spooky season? Swing by to make your own spooky cat decor with us! Register by scanning the QR code on our event flyer.",
     },
     {
-      title: "Thrift Shop Sale",
-      date: "May 22, 2026",
-      time: "12:00 PM - 5:00 PM",
-      location: "35 Wabash Street",
-      description: "Special sale with 25% off all items. All proceeds benefit rescued animals.",
+      title: "Cat Open House",
+      date: "October 31, 2026",
+      time: "12:00 PM - 4:00 PM",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
+      description:
+        "Come visit with our adorable, adoptable cats! A flight of stairs is required to reach the cats, and any children under 18 must be accompanied by an adult. We will also have a sale, so save some time to browse our thrift shop!",
+    },
+    {
+      title: "Super Sale & Cat Open House",
+      date: "November 28, 2026",
+      time: "12:00 PM - 4:00 PM",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
+      description:
+        "Come visit with our cats and enjoy our Super Sale, with items half off for Small Business Saturday!",
+    },
+    {
+      title: "Handmade for the Holidays: A Cat-Themed Wrapping Paper Workshop",
+      date: "December 12, 2026",
+      time: "6:00 PM - 7:30 PM",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
+      description: "Hand craft some gift wrap with cute cat themes for the holidays! Tickets are $10.",
     },
   ];
 
@@ -231,15 +248,18 @@ export default function GetInvolved() {
 
               {upcomingEvents.length > 0 ? (
                 <div className="space-y-6 mb-12">
-                  {upcomingEvents.map((event, index) => (
+                  {upcomingEvents.map((event, index) => {
+                    const [month, dayWithComma] = event.date.split(" ");
+                    const day = dayWithComma.replace(",", "");
+                    return (
                     <Card key={index}>
                       <CardContent className="p-6">
                         <div className="flex flex-col md:flex-row gap-6">
                           <div className="w-full md:w-32 h-32 bg-secondary/20 rounded-lg flex flex-col items-center justify-center flex-shrink-0">
                             <Calendar className="h-8 w-8 text-primary mb-2" />
                             <div className="text-center">
-                              <div className="font-bold text-sm">{event.date.split(" ")[0]}</div>
-                              <div className="text-xs text-muted-foreground">{event.date.split(" ")[1]}</div>
+                              <div className="font-bold text-2xl leading-none">{day}</div>
+                              <div className="text-xs text-muted-foreground mt-1">{month}</div>
                             </div>
                           </div>
                           <div className="flex-1">
@@ -252,13 +272,11 @@ export default function GetInvolved() {
                             </div>
                             <p className="text-muted-foreground">{event.description}</p>
                           </div>
-                          <div className="flex items-center">
-                            <Button variant="outline">Learn More</Button>
-                          </div>
                         </div>
                       </CardContent>
                     </Card>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : (
                 <Card className="mb-12">
