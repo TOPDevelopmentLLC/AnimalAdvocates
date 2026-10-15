@@ -43,7 +43,7 @@ export default function GetInvolved() {
       title: "Hauntingly Handmade: Black Cat Silhouette Workshop",
       date: "October 18, 2026",
       time: "2:00 PM - 3:30 PM",
-      location: "35 Wabash Street",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
       description:
         "Feeling creative? Want to embrace the spooky season? Swing by to make your own spooky cat decor with us! Register by scanning the QR code on our event flyer.",
     },
@@ -51,7 +51,7 @@ export default function GetInvolved() {
       title: "Cat Open House",
       date: "October 31, 2026",
       time: "12:00 PM - 4:00 PM",
-      location: "35 Wabash Street",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
       description:
         "Come visit with our adorable, adoptable cats! A flight of stairs is required to reach the cats, and any children under 18 must be accompanied by an adult. We will also have a sale, so save some time to browse our thrift shop!",
     },
@@ -59,7 +59,7 @@ export default function GetInvolved() {
       title: "Super Sale & Cat Open House",
       date: "November 28, 2026",
       time: "12:00 PM - 4:00 PM",
-      location: "35 Wabash Street",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
       description:
         "Come visit with our cats and enjoy our Super Sale, with items half off for Small Business Saturday!",
     },
@@ -67,7 +67,7 @@ export default function GetInvolved() {
       title: "Handmade for the Holidays: A Cat-Themed Wrapping Paper Workshop",
       date: "December 12, 2026",
       time: "6:00 PM - 7:30 PM",
-      location: "35 Wabash Street",
+      location: "35 Wabash Street, Pittsburgh, PA 15220",
       description: "Hand craft some gift wrap with cute cat themes for the holidays! Tickets are $10.",
     },
   ];
