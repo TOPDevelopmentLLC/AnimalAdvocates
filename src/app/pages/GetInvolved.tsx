@@ -272,9 +272,6 @@ export default function GetInvolved() {
                             </div>
                             <p className="text-muted-foreground">{event.description}</p>
                           </div>
-                          <div className="flex items-center">
-                            <Button variant="outline">Learn More</Button>
-                          </div>
                         </div>
                       </CardContent>
                     </Card>
