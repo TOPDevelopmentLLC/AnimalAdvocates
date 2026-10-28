@@ -8,4 +8,4 @@ These are copies. The source lives in the TOP_Dev_Services repo under
 `.claude/skills/`; edit them there and re-run
 `scripts/sync-client-skills.sh <this repo>` to update this copy.
 
-Synced from TOP_Dev_Services commit `925210f`.
+Synced from TOP_Dev_Services commit `cbfcf36`.

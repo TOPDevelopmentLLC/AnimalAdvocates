@@ -31,10 +31,10 @@ URL for external links.
 Each section may also carry a stable `"id"` (e.g. `"donate-wishlist"`) so the
 client can place it; keep ids unique per page.
 
-Before inventing shapes, check whether the admin dashboard that edits this CMS
-already expects different field names — if a page for another client exists,
-`GET /api/v1/content/page?domain=<other>&name=<page>` shows real data. Match
-it and update this table.
+TOPrism's admin editor edits exactly these fields
+(`src/app/utils/sections.ts` in the TOPrism repo). Change both together:
+a field the editor doesn't know still shows up there as "other fields", but
+staff can't edit it in the editor the site expects.
 
 ## Workflow
 
