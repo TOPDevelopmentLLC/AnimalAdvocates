@@ -3,9 +3,10 @@
 - `top-services-api`
 - `audit-client-for-top-services`
 - `push-sections-to-top`
+- `add-events-to-client`
 
 These are copies. The source lives in the TOP_Dev_Services repo under
 `.claude/skills/`; edit them there and re-run
 `scripts/sync-client-skills.sh <this repo>` to update this copy.
 
-Synced from TOP_Dev_Services commit `cbfcf36`.
+Synced from TOP_Dev_Services commit `ffaeeb1`.
