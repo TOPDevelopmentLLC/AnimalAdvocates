@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "top:push": "node .claude/skills/push-sections-to-top/scripts/push-content.mjs --domain animaladvocates.net --dir top-content --public public"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
