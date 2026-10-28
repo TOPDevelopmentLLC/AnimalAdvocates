@@ -19,10 +19,14 @@ the convention — the client renderer and these files must agree.
 | type | data |
 | --- | --- |
 | `hero` | `{ "title", "subtitle"?, "images"?: [url], "ctas"?: [{ "label", "href" }] }` |
-| `titleText` | `{ "title", "text" }` |
-| `bodyText` | `{ "title"?, "paragraphs"?: [string], "items"?: [string] }` |
+| `titleText` | `{ "title", "text", "image"?: { "src", "alt" }, "ctas"?: [{ "label", "href" }] }` |
+| `bodyText` | `{ "title"?, "paragraphs"?: [string], "items"?: [string], "image"?: { "src", "alt" }, "ctas"?: [{ "label", "href" }] }` |
 | `image` | `{ "src", "alt", "caption"? }` |
 | `gallery` | `{ "title"?, "images": [{ "src", "alt" }] }` |
+
+Use `titleText` with `image` + `ctas` for cards (image, heading, blurb,
+link), and `ctas` for buttons. `href` is a site route (`/donate`) or a full
+URL for external links.
 
 Each section may also carry a stable `"id"` (e.g. `"donate-wishlist"`) so the
 client can place it; keep ids unique per page.

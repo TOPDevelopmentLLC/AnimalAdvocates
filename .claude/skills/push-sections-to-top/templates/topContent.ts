@@ -16,10 +16,22 @@ export interface HeroData {
   title: string;
   subtitle?: string;
   images?: string[];
-  ctas?: { label: string; href: string }[];
+  ctas?: Cta[];
 }
-export interface TitleTextData { title: string; text: string }
-export interface BodyTextData { title?: string; paragraphs?: string[]; items?: string[] }
+export interface Cta { label: string; href: string }
+export interface TitleTextData {
+  title: string;
+  text: string;
+  image?: { src: string; alt: string };
+  ctas?: Cta[];
+}
+export interface BodyTextData {
+  title?: string;
+  paragraphs?: string[];
+  items?: string[];
+  image?: { src: string; alt: string };
+  ctas?: Cta[];
+}
 export interface ImageData { src: string; alt: string; caption?: string }
 export interface GalleryData { title?: string; images: { src: string; alt: string }[] }
 

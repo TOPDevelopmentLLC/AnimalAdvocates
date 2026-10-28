@@ -1,0 +1,152 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Donate to Pittsburgh's Cat & Dog Rescue",
+        "subtitle": "Every dollar goes directly to caring for rescued cats and dogs in the Pittsburgh region. As an all-volunteer organization, we have no salaries — your gift becomes vet care, vaccines, food, and forever homes."
+      }
+    },
+    {
+      "id": "monetary",
+      "type": "bodyText",
+      "data": {
+        "title": "Monetary Donation",
+        "paragraphs": [
+          "Your financial gift directly supports veterinary care, food, shelter, and the rescue of animals in need. All donations are tax-deductible."
+        ],
+        "ctas": [
+          {
+            "label": "Donate via ShelterLuv",
+            "href": "https://checkout.shelterluv.com/donate/AAPA"
+          },
+          {
+            "label": "Donate via PayPal",
+            "href": "https://www.paypal.com/us/fundraiser/charity/2220895"
+          },
+          {
+            "label": "Donate via Venmo",
+            "href": "https://venmo.com/animaladvocates412"
+          }
+        ]
+      }
+    },
+    {
+      "id": "suggested-amounts",
+      "type": "bodyText",
+      "data": {
+        "title": "Suggested Amounts",
+        "items": [
+          "$25",
+          "$50",
+          "$100",
+          "$250"
+        ]
+      }
+    },
+    {
+      "id": "supplies",
+      "type": "bodyText",
+      "data": {
+        "title": "Donate Supplies",
+        "paragraphs": [
+          "In-kind donations help us care for animals daily. Drop off supplies at our headquarters during thrift shop hours."
+        ]
+      }
+    },
+    {
+      "id": "wishlist",
+      "type": "bodyText",
+      "data": {
+        "title": "Current Wishlist",
+        "items": [
+          "Dry cat food (Cat: Purina Tender Selects or Purina One Chicken)",
+          "Canned cat food (Fancy Feast or Friskies)",
+          "Adult cat litter (clumping, unscented brands of clay litter)",
+          "Paper towels and cleaning supplies (Rescue Brand Disinfectant, unscented dish soap and unscented laundry detergent)",
+          "Pet toys and treats"
+        ],
+        "ctas": [
+          {
+            "label": "Chewy Wishlist",
+            "href": "https://www.chewy.com/g/animal-advocates-inc_b70932977#wish-list&wishlistsortby=DEFAULT"
+          },
+          {
+            "label": "Amazon Wishlist",
+            "href": "https://www.amazon.com/hz/wishlist/ls/2T69APVNUFL0C?ref_=wl_share&scrlybrkr=28100f07"
+          }
+        ]
+      }
+    },
+    {
+      "id": "drop-off",
+      "type": "bodyText",
+      "data": {
+        "title": "Drop-off Location:",
+        "items": [
+          "35 Wabash Street, Pittsburgh, PA 15220",
+          "Monday-Friday: 12-3pm",
+          "Saturday: 12-4pm"
+        ]
+      }
+    },
+    {
+      "id": "other-ways",
+      "type": "bodyText",
+      "data": {
+        "title": "Other Ways to Give"
+      }
+    },
+    {
+      "id": "give-recurring",
+      "type": "titleText",
+      "data": {
+        "title": "Recurring Donations",
+        "text": "Set up a monthly gift to provide steady support for our rescue operations year-round."
+      }
+    },
+    {
+      "id": "give-honor",
+      "type": "titleText",
+      "data": {
+        "title": "Honor & Memorial Gifts",
+        "text": "Make a donation in honor or memory of a loved one or beloved pet."
+      }
+    },
+    {
+      "id": "give-amazon",
+      "type": "titleText",
+      "data": {
+        "title": "Amazon Wishlist",
+        "text": "Shop our Amazon wishlist to send supplies directly to our rescue."
+      }
+    },
+    {
+      "id": "tax-deductible",
+      "type": "titleText",
+      "data": {
+        "title": "501(c)(3) Tax-Deductible",
+        "text": "Animal Advocates is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law. EIN available upon request."
+      }
+    },
+    {
+      "id": "impact",
+      "type": "bodyText",
+      "data": {
+        "title": "Your Impact"
+      }
+    },
+    {
+      "id": "impact-story",
+      "type": "bodyText",
+      "data": {
+        "title": "Max's Second Chance",
+        "paragraphs": [
+          "\"Thanks to donor support, we were able to provide Max with the emergency surgery he needed after being found injured. Today, he's thriving in his forever home with a loving family in the South Side.\"",
+          "— Animal Advocates Volunteer Team"
+        ]
+      }
+    }
+  ]
+}
