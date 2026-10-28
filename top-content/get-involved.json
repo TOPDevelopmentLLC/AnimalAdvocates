@@ -128,39 +128,6 @@
           "— Connie, Pittsburgh Senior Foster"
         ]
       }
-    },
-    {
-      "id": "events",
-      "type": "bodyText",
-      "data": {
-        "title": "Upcoming Events for Animal Advocates"
-      }
-    },
-    {
-      "id": "events-empty",
-      "type": "titleText",
-      "data": {
-        "title": "No Upcoming Events",
-        "text": "Check back soon for upcoming Pittsburgh adoption events and fundraisers, or follow us on social media for the latest updates.",
-        "ctas": [
-          {
-            "label": "Follow on Facebook",
-            "href": "https://facebook.com/animaladvocatespgh"
-          },
-          {
-            "label": "Follow on Instagram",
-            "href": "https://instagram.com/weareanimaladvocates"
-          }
-        ]
-      }
-    },
-    {
-      "id": "stay-updated",
-      "type": "titleText",
-      "data": {
-        "title": "Stay Updated",
-        "text": "Join our mailing list to receive event notifications, adoption updates, and rescue stories from Animal Advocates."
-      }
     }
   ]
 }

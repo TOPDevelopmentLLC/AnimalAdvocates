@@ -106,18 +106,39 @@ Run it from the client repo root so `--dir` and `--public` resolve there.
 
 ### 3. Render in the client
 
-Copy `templates/topContent.ts` into the client (e.g. `src/app/lib/`), set
-`TOP_DOMAIN`, then in a page:
+Copy the two templates into the client:
+- `templates/topContent.ts` → e.g. `src/app/lib/topContent.ts`; set `TOP_DOMAIN`.
+- `templates/TopLinks.tsx` → e.g. `src/app/components/TopLinks.tsx`. `CtaLink`
+  renders a CTA (router `Link` for `/routes`, new tab for `http(s)`, plain
+  anchor for `mailto:`/`tel:`); `LinkedText` turns an email/phone that a
+  paragraph mentions into a link in place. It assumes `react-router`; adjust
+  the import for other routers.
+
+Each page imports its own JSON as the fallback, so the copy lives in one
+place and the page renders instantly, before and without the API:
 
 ```tsx
-const { section } = useTopContent("donate");
-const hero = section<HeroData>("hero", { title: "Donate to ...", subtitle: "..." });
+import donateContent from "../../../top-content/donate.json";
+
+const { section } = useTopContent("donate", donateContent);
+const hero = section<HeroData>("hero");
 <h1>{hero.title}</h1>
+{hero.ctas?.map((cta) => (
+  <CtaLink key={cta.href} href={cta.href}><Button>{cta.label}</Button></CtaLink>
+))}
 ```
 
-The hook falls back to the hardcoded default on network error, missing page,
-or missing section, so the site never renders blank. Keep the defaults equal to
-the pushed JSON at the time of migration.
+`section(id)` returns the CMS version merged over the local section, so a
+network error, a missing page, or a missing section never renders blank.
+Replace only the text, links and images — keep every element and class name
+as it was. For repeated cards, keep the section ids in a small array (plus any
+per-card icon or class) and map over it.
+
+Prove nothing visible changed: before editing, build and capture each route's
+`main` text, link hrefs, `img` srcs and background images with Playwright
+(block the API host so pages render from the local JSON); capture again after
+and diff. Then serve modified content for the API host and check the edits
+appear.
 
 ### 4. Verify
 

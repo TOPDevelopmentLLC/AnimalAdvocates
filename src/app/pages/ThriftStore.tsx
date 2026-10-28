@@ -1,37 +1,47 @@
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { MapPin, Clock, ShoppingBag, ExternalLink } from "lucide-react";
+import { CtaLink, LinkedText } from "../components/TopLinks";
+import { useTopContent, type BodyTextData, type HeroData } from "../lib/topContent";
+import thriftContent from "../../../top-content/thrift-shop.json";
+
+/** Splits "Monday: 12:00 PM - 3:00 PM" into its day and hours. */
+function splitHours(line: string) {
+  const at = line.indexOf(": ");
+  return at === -1 ? { day: line, hours: "" } : { day: line.slice(0, at), hours: line.slice(at + 2) };
+}
+
+/** Bolds a leading "Note:" the way the page always has. */
+function NoteText({ text }: { text: string }) {
+  if (!text.startsWith("Note:")) return <>{text}</>;
+  return (
+    <>
+      <strong>Note:</strong>
+      {text.slice("Note:".length)}
+    </>
+  );
+}
 
 export default function ThriftStore() {
-  const acceptedItems = [
-    "gently-used clothing (women’s clothing only, no pants)",
-    "jewelry",
-    "collectibles",
-    "vintage pieces",
-    "housewares",
-    "themed decorations (in season)",
-    "small appliances and kitchenware items"
-  ];
-
-  const notAcceptedItems = [
-    "oversized items such as large appliances or furniture",
-    "computers or printers",
-    "books/magazines, DVDs, CDs and cassette tapes",
-    "used cushions/anything with stuffing",
-    "men’s & children’s clothing",
-    "items that are broken, stained, torn or missing parts"
-  ];
+  const { section } = useTopContent("thrift-shop", thriftContent);
+  const hero = section<HeroData>("hero");
+  const hours = section<BodyTextData>("hours");
+  const location = section<BodyTextData>("location");
+  const donateItems = section<BodyTextData>("donate-items");
+  const accepted = section<BodyTextData>("accepted");
+  const notAccepted = section<BodyTextData>("not-accepted");
+  const donationInfo = section<BodyTextData>("donation-info");
+  const [shopName, ...addressLines] = location.items ?? [];
+  const neighborhood = addressLines.pop();
 
   return (
     <div className="flex flex-col">
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Pittsburgh Animal Rescue Thrift Shop</h1>
+          <h1 className="text-4xl font-bold mb-6">{hero.title}</h1>
           <p className="text-xl text-white/90">
-            Whether you're looking for a one-of-a-kind collectible, gently-used clothing, housewares, or pet products,
-            support animal rescue in Pittsburgh by shopping at our resale boutique resale boutique. 100% of sales benefit the rescue and care
-            of animals in need.
+            {hero.subtitle}
           </p>
         </div>
       </section>
@@ -44,29 +54,22 @@ export default function ThriftStore() {
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Shop Hours</h2>
+              <h2 className="text-2xl font-bold mb-4">{hours.title}</h2>
               <div className="space-y-2">
-                {[
-                  { day: "Monday", hours: "12:00 PM - 3:00 PM" },
-                  { day: "Tuesday", hours: "12:00 PM - 3:00 PM" },
-                  { day: "Wednesday", hours: "12:00 PM - 3:00 PM" },
-                  { day: "Thursday", hours: "12:00 PM - 3:00 PM" },
-                  { day: "Friday", hours: "12:00 PM - 3:00 PM" },
-                  { day: "Saturday", hours: "12:00 PM - 4:00 PM" },
-                  { day: "Sunday", hours: "Closed" },
-                ].map((item) => (
+                {(hours.items ?? []).map(splitHours).map((item) => (
                   <div key={item.day} className="flex justify-between py-2 border-b last:border-0">
                     <span className="font-medium">{item.day}</span>
                     <span className="text-muted-foreground">{item.hours}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-4 p-4 bg-accent/10 rounded-lg">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Note:</strong> These hours are for the Thrift Shop only. All animal meet-and-greets are by
-                  appointment. Check Facebook or join our mailing list for sale dates and hours updates.
-                </p>
-              </div>
+              {hours.paragraphs?.map((paragraph, index) => (
+                <div key={index} className="mt-4 p-4 bg-accent/10 rounded-lg">
+                  <p className="text-sm text-muted-foreground">
+                    <NoteText text={paragraph} />
+                  </p>
+                </div>
+              ))}
             </CardContent>
           </Card>
 
@@ -75,13 +78,14 @@ export default function ThriftStore() {
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold mb-4">Location</h2>
+              <h2 className="text-2xl font-bold mb-4">{location.title}</h2>
               <div className="space-y-3 mb-6">
                 <div>
-                  <p className="font-medium text-lg">Animal Advocates Thrift Shop</p>
-                  <p className="text-muted-foreground">35 Wabash Street</p>
-                  <p className="text-muted-foreground">Pittsburgh, PA 15220</p>
-                  <p className="text-muted-foreground mt-2">West End neighborhood</p>
+                  <p className="font-medium text-lg">{shopName}</p>
+                  {addressLines.map((line, index) => (
+                    <p key={index} className="text-muted-foreground">{line}</p>
+                  ))}
+                  {neighborhood && <p className="text-muted-foreground mt-2">{neighborhood}</p>}
                 </div>
               </div>
               <iframe
@@ -92,15 +96,16 @@ export default function ThriftStore() {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <a
-                href="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
-              >
-                Get directions
-                <ExternalLink className="h-4 w-4" />
-              </a>
+              {location.ctas?.map((cta) => (
+                <CtaLink
+                  key={cta.href}
+                  href={cta.href}
+                  className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
+                >
+                  {cta.label}
+                  <ExternalLink className="h-4 w-4" />
+                </CtaLink>
+              ))}
             </CardContent>
           </Card>
         </div>
@@ -153,13 +158,13 @@ export default function ThriftStore() {
 
         {/* Donation Guidelines */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">Donate Items to Our Thrift Shop</h2>
+          <h2 className="text-3xl font-bold mb-6">{donateItems.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="bg-green-50">
               <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-4 text-green-800">✓ Accepted Donations</h3>
+                <h3 className="font-bold text-lg mb-4 text-green-800">{accepted.title}</h3>
                 <ul className="space-y-2">
-                  {acceptedItems.map((item, index) => (
+                  {accepted.items?.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm">
                       <span className="text-green-600 mt-1">•</span>
                       <span>{item}</span>
@@ -171,9 +176,9 @@ export default function ThriftStore() {
 
             <Card className="bg-red-50">
               <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-4 text-red-800">✗ Not Accepted</h3>
+                <h3 className="font-bold text-lg mb-4 text-red-800">{notAccepted.title}</h3>
                 <ul className="space-y-2">
-                  {notAcceptedItems.map((item, index) => (
+                  {notAccepted.items?.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm">
                       <span className="text-red-600 mt-1">•</span>
                       <span>{item}</span>
@@ -186,30 +191,20 @@ export default function ThriftStore() {
 
           <Card className="mt-6 bg-accent/10">
             <CardContent className="p-6">
-              <h3 className="font-bold mb-3">Important Donation Information</h3>
+              <h3 className="font-bold mb-3">{donationInfo.title}</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary">•</span>
-                  <span>
-                    All larger donations require an appointment. Call{" "}
-                    <a href="tel:412-928-9777" className="text-primary hover:underline font-medium">
-                      412-928-9777
-                    </a>{" "}
-                    during open hours.
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary">•</span>
-                  <span>All donations are tax-deductible 501(3)(c).</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary">•</span>
-                  <span>Drop-off during Thrift Shop hours at 35 Wabash Street, Pittsburgh, PA 15220.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary">•</span>
-                  <span>Since its founding in 1984, Animal Advocates has remained committed to a no-kill policy and advocacy on behalf of animals.   In accordance with this philosophy and our mission statement, please be advised that we do not accept donations of merchandise made from animal products, such as fur, leather, down or silk.</span>
-                </li>
+                {donationInfo.items?.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary">•</span>
+                    <span>
+                      <LinkedText
+                        text={item}
+                        links={donationInfo.ctas}
+                        linkClassName="text-primary hover:underline font-medium"
+                      />
+                    </span>
+                  </li>
+                ))}
               </ul>
             </CardContent>
           </Card>
