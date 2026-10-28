@@ -46,6 +46,17 @@ admin via `PUT /api/v1/admin/features`. A disabled feature returns 403.
 | **Images (S3)** | URLs returned are public | `POST /api/v1/images` multipart (business JWT) | Host images referenced from content/events. |
 | **Integrations** | — | `/api/v1/integrations` (business JWT) | Per-business secrets: `STRIPE`, `MAILCHIMP`, `WORDWOLF`, `SHELTERLUV`. |
 
+## Schema changes
+
+Hibernate `ddl-auto: update` still adds tables and nullable columns for entity
+changes. Anything it can't do safely on tables that have rows — backfills,
+NOT NULL columns, constraints, renames, data fixes — goes in a Flyway
+migration: `src/main/resources/db/migration/V<n>__<description>.sql`, next
+number after the highest existing one. Flyway runs before Hibernate, so a
+migration must be a no-op when its table doesn't exist yet (a fresh
+database); see `V1__add_event_end_date_time.sql` for the guard. Never edit a
+migration that has been deployed — add a new one.
+
 ## Known gaps (check before promising a feature)
 
 - **Payments need a JWT.** There is no anonymous checkout; a guest donation flow

@@ -18,6 +18,8 @@ export interface TopEvent {
   description: string;
   /** Start time, ISO 8601 in UTC. Display it in `timeZone`. */
   dateTime: string;
+  /** End time, ISO 8601 in UTC, or null when the event has no end time. */
+  endDateTime: string | null;
   timeZone: string | null;
   location: string;
   /** 0 for free events. */
@@ -75,17 +77,33 @@ export function useUpcomingEvents(size = 20) {
   return { events, loading, error };
 }
 
-/** Date and time parts of an event's start, in the event's own time zone. */
+/**
+ * Date and time parts of an event, in the event's own time zone. `time` is
+ * the start ("12:00 PM"), or the range when there's an end time
+ * ("12:00 PM - 4:00 PM", or "6:00 PM - Dec 13, 1:00 AM" across midnight).
+ */
 export function eventDateParts(event: TopEvent) {
-  const date = new Date(event.dateTime);
   const timeZone = event.timeZone || DEFAULT_TIME_ZONE;
-  const part = (options: Intl.DateTimeFormatOptions) =>
-    new Intl.DateTimeFormat("en-US", { timeZone, ...options }).format(date);
+  const format = (iso: string, options: Intl.DateTimeFormatOptions) =>
+    new Intl.DateTimeFormat("en-US", { timeZone, ...options }).format(new Date(iso));
+  const clock: Intl.DateTimeFormatOptions = { hour: "numeric", minute: "2-digit" };
+
+  const startTime = format(event.dateTime, clock);
+  let time = startTime;
+  if (event.endDateTime) {
+    const sameDay =
+      format(event.dateTime, { dateStyle: "short" }) === format(event.endDateTime, { dateStyle: "short" });
+    const endTime = sameDay
+      ? format(event.endDateTime, clock)
+      : format(event.endDateTime, { month: "short", day: "numeric", ...clock });
+    time = `${startTime} - ${endTime}`;
+  }
+
   return {
-    month: part({ month: "long" }), // "October"
-    day: part({ day: "numeric" }), // "31"
-    weekday: part({ weekday: "long" }), // "Saturday"
-    time: part({ hour: "numeric", minute: "2-digit" }), // "12:00 PM"
+    month: format(event.dateTime, { month: "long" }), // "October"
+    day: format(event.dateTime, { day: "numeric" }), // "31"
+    weekday: format(event.dateTime, { weekday: "long" }), // "Saturday"
+    time,
   };
 }
 

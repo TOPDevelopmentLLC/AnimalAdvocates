@@ -131,8 +131,9 @@ markup and classes:
   upcoming events" message if it has one).
 - `dateTime` is UTC. Always format through `eventDateParts`, which uses the
   event's own `timeZone`; never `new Date().toLocaleString()` on its own.
-- The backend stores a start time only. A hardcoded "2:00 PM - 3:30 PM" range
-  becomes the start time; mention the lost end time to the user.
+- `endDateTime` is optional. `eventDateParts(event).time` already gives
+  "12:00 PM - 4:00 PM" when there's an end time and "12:00 PM" when there
+  isn't — when moving hardcoded ranges into TOPrism, enter both times.
 - Show price only when `price > 0` (`formatEventPrice` returns `""` for free)
   and "Sold out" when `spotsLeft === 0`. `spotsLeft === null` means unlimited.
 - Keep `description` line breaks (`whitespace-pre-line`).
@@ -150,6 +151,6 @@ it is, or move it to the CMS with `push-sections-to-top`.
   tab opens. The live Function URL only answers allowed origins, so a local
   browser test against it needs a temporary origin approval (step 2).
 - Tell the user which hardcoded events need re-entering in TOPrism → Events
-  (title, start date and time, time zone, location, description, price,
-  capacity). Past events can be skipped: the Lambda only returns upcoming
+  (title, start and end date and time, time zone, location, description,
+  price, capacity). Past events can be skipped: the Lambda only returns upcoming
   ones.
