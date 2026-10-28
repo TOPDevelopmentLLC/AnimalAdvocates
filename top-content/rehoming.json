@@ -1,0 +1,77 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Assistance Rehoming an Animal",
+        "subtitle": "Animal Advocates is committed to helping animals in need while maintaining our no-kill tradition. Learn about our rehoming assistance and courtesy posting services."
+      }
+    },
+    {
+      "id": "commitment",
+      "type": "bodyText",
+      "data": {
+        "title": "Our Commitment",
+        "paragraphs": [
+          "It is our goal to admit and place as many animals as possible while staying true to our no-kill tradition. No animal is euthanized unless it suffers from end-stage terminal illness. All of our admissions must be scheduled in advance.",
+          "If an animal adopted from Animal Advocates needs rehoming assistance, please contact us at animaladvocatespgh294@gmail.com"
+        ],
+        "ctas": [
+          {
+            "label": "animaladvocatespgh294@gmail.com",
+            "href": "mailto:animaladvocatespgh294@gmail.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "intake-notice",
+      "type": "bodyText",
+      "data": {
+        "paragraphs": [
+          "Animal Advocates receives far more intake requests than can be accepted. If space is available, or we are able to assist with a courtesy posting or other resources, a volunteer will respond to you by email or phone. Please be patient. Animal Advocates is an all volunteer organization and all aspects of the rescue are managed by individuals who donate their time.",
+          "While not required for admission, donations are welcomed to help us meet the needs of all the animals entrusted in the care of Animal Advocates."
+        ]
+      }
+    },
+    {
+      "id": "other-resources",
+      "type": "bodyText",
+      "data": {
+        "title": "Other Resources",
+        "paragraphs": [
+          "Please use the links below for other resources and support."
+        ]
+      }
+    },
+    {
+      "id": "resource-adoptapet",
+      "type": "titleText",
+      "data": {
+        "title": "Rehome by Adopt-a-Pet",
+        "text": "Free service to help you safely rehome your pet directly to a new adopter.",
+        "ctas": [
+          {
+            "label": "Visit Rehome",
+            "href": "https://rehome.adoptapet.com/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "resource-petfinder",
+      "type": "titleText",
+      "data": {
+        "title": "Petfinder Shelter Search",
+        "text": "Find animal shelters and rescues in your area for additional rehoming resources.",
+        "ctas": [
+          {
+            "label": "Search Shelters",
+            "href": "https://www.petfinder.com/animal-shelters-and-rescues/search/"
+          }
+        ]
+      }
+    }
+  ]
+}
