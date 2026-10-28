@@ -1,0 +1,159 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Pittsburgh Pet Owner Resources",
+        "subtitle": "Animal Advocates provides trusted local resources for Pittsburgh pet owners — pet supplies, training and grooming services, and our Pet Food Pantry program for those in need."
+      }
+    },
+    {
+      "id": "pet-supplies",
+      "type": "bodyText",
+      "data": {
+        "title": "Pet Supplies"
+      }
+    },
+    {
+      "id": "supplies-petsuppliesplus",
+      "type": "titleText",
+      "data": {
+        "title": "Pet Supplies Plus – Bethel Park",
+        "text": "5229 Library Road, Bethel Park, PA 15102",
+        "ctas": [
+          {
+            "label": "412-831-8986",
+            "href": "tel:412-831-8986"
+          }
+        ]
+      }
+    },
+    {
+      "id": "supplies-petpeople",
+      "type": "titleText",
+      "data": {
+        "title": "Pet People by Hollywood Feed - Greentree",
+        "text": "1948 Greentree Road, Pittsburgh, PA 15220",
+        "ctas": [
+          {
+            "label": "412-207-7580",
+            "href": "tel:412-207-7580"
+          }
+        ]
+      }
+    },
+    {
+      "id": "training",
+      "type": "bodyText",
+      "data": {
+        "title": "Training, Daycare and Grooming Services"
+      }
+    },
+    {
+      "id": "training-parkway",
+      "type": "titleText",
+      "data": {
+        "title": "Parkway Pet Lodge and Training",
+        "text": "66 Economy Grade Road, Coraopolis, PA 15108",
+        "ctas": [
+          {
+            "label": "724-457-0942",
+            "href": "tel:724-457-0942"
+          }
+        ]
+      }
+    },
+    {
+      "id": "training-animal-elegance",
+      "type": "titleText",
+      "data": {
+        "title": "Animal Elegance",
+        "text": "2212 Noblestown Rd #106, Pittsburgh, PA 15205",
+        "ctas": [
+          {
+            "label": "412-361-1177",
+            "href": "tel:412-361-1177"
+          }
+        ]
+      }
+    },
+    {
+      "id": "food-pantry",
+      "type": "bodyText",
+      "data": {
+        "title": "Pet Food Pantry",
+        "paragraphs": [
+          "Through generous donations from Pet Supplies Plus in Bethel Park, Animal Advocates partners with the Coraopolis Community Development Corporation's Food Pantry and the West Hills Food Pantry to provide pet supplies to those in need."
+        ]
+      }
+    },
+    {
+      "id": "pantry-coraopolis",
+      "type": "titleText",
+      "data": {
+        "title": "Coraopolis Community Food Pantry",
+        "text": "Regular pantry dates: 1st and 3rd Sunday of each month",
+        "ctas": [
+          {
+            "label": "info@corycdc.org",
+            "href": "mailto:info@corycdc.org"
+          },
+          {
+            "label": "412-329-8247",
+            "href": "tel:412-329-8247"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pantry-west-hills",
+      "type": "titleText",
+      "data": {
+        "title": "West Hills Food Pantry",
+        "text": "Regular pantry dates: 1st and 3rd Tuesday of each month",
+        "ctas": [
+          {
+            "label": "412-262-4930",
+            "href": "tel:412-262-4930"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pantry-shim",
+      "type": "titleText",
+      "data": {
+        "title": "SHIM",
+        "text": "https://shimcares.org/",
+        "ctas": [
+          {
+            "label": "412-854-9120",
+            "href": "tel:412-854-9120"
+          }
+        ]
+      }
+    },
+    {
+      "id": "how-to-contribute",
+      "type": "bodyText",
+      "data": {
+        "title": "How to Contribute",
+        "paragraphs": [
+          "There are many ways you can contribute to the Pet Food Pantry and help local animals in need, including donating supplies or providing monetary support. Items can be purchased to donate from Pet Supplies Plus and deposited at the Bethel Park store.",
+          "If you have questions, would like to learn how you can get involved or need assistance for your animal, please contact us at 412-928-9777 or animaladvocatespgh294@gmail.com"
+        ],
+        "ctas": [
+          {
+            "label": "412-928-9777",
+            "href": "tel:412-928-9777"
+          },
+          {
+            "label": "animaladvocatespgh294@gmail.com",
+            "href": "mailto:animaladvocatespgh294@gmail.com"
+          }
+        ]
+      }
+    }
+  ]
+}

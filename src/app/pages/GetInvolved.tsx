@@ -3,41 +3,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Truck, ShoppingBag, Megaphone, Calendar, CheckCircle2 } from "lucide-react";
+import { CtaLink } from "../components/TopLinks";
+import { useTopContent, type BodyTextData, type HeroData, type TitleTextData } from "../lib/topContent";
+import getInvolvedContent from "../../../top-content/get-involved.json";
 
 const VALID_TABS = ["opportunities", "senior-program", "events"];
+
+const volunteerRoles = [
+  { id: "role-foster", icon: Heart },
+  { id: "role-caretaker", icon: Truck },
+  { id: "role-thrift", icon: ShoppingBag },
+  { id: "role-fundraising", icon: Megaphone },
+];
 
 export default function GetInvolved() {
   const [searchParams, setSearchParams] = useSearchParams();
   const requestedTab = searchParams.get("tab");
   const activeTab = VALID_TABS.includes(requestedTab ?? "") ? requestedTab! : "opportunities";
 
-  const volunteerRoles = [
-    {
-      icon: Heart,
-      title: "Foster a Cat or Dog",
-      description:
-        "Provide temporary in-home care for animals awaiting adoption. Ideal for families and students. We provide supplies and vet care.",
-    },
-    {
-      icon: Truck,
-      title: "Cat Caretaker & Animal Transportation",
-      description:
-        "Provide basic care and socialization at headquarters. Transport animals to vet appointments and between shelters/homes.",
-    },
-    {
-      icon: ShoppingBag,
-      title: "Thrift Shop Sales",
-      description:
-        "Staff the West End boutique, price merchandise, and welcome customers. Provides our largest single revenue source.",
-    },
-    {
-      icon: Megaphone,
-      title: "Fundraising & Outreach",
-      description:
-        "Plan and staff fundraisers, community outreach events, and advocacy programs to support animal welfare.",
-    },
-  ];
+  const { section } = useTopContent("get-involved", getInvolvedContent);
+  const hero = section<HeroData>("hero");
+  const opportunities = section<BodyTextData>("opportunities");
+  const requirements = section<BodyTextData>("requirements");
+  const cantCommit = section<TitleTextData>("cant-commit");
+  const seniorProgram = section<BodyTextData>("senior-program");
+  const seniorBenefits = section<BodyTextData>("senior-benefits");
+  const seniorEligibility = section<TitleTextData>("senior-eligibility");
+  const seniorStory = section<BodyTextData>("senior-story");
+  const [storyQuote, storyAttribution] = seniorStory.paragraphs ?? [];
 
+  // Events tab copy stays here until events come from the TOP Events service.
   const upcomingEvents = [
     {
       title: "Hauntingly Handmade: Black Cat Silhouette Workshop",
@@ -77,11 +72,9 @@ export default function GetInvolved() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Get Involved with Animal Rescue in Pittsburgh</h1>
+          <h1 className="text-4xl font-bold mb-6">{hero.title}</h1>
           <p className="text-xl text-white/90">
-            At the heart of Animal Advocates is our dedicated team of volunteers. With no compensated staff, the
-            collective efforts of our volunteers is invaluable to saving the lives of animals in need across the
-            Pittsburgh region.
+            {hero.subtitle}
           </p>
         </div>
       </section>
@@ -102,14 +95,14 @@ export default function GetInvolved() {
           <TabsContent value="opportunities">
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold mb-8">Volunteer Opportunities in Pittsburgh</h2>
+                <h2 className="text-3xl font-bold mb-8">{opportunities.title}</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {volunteerRoles.map((role, index) => {
-                  const Icon = role.icon;
+                {volunteerRoles.map(({ id, icon: Icon }) => {
+                  const role = section<TitleTextData>(id);
                   return (
-                    <Card key={index}>
+                    <Card key={id}>
                       <CardHeader>
                         <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                           <Icon className="h-6 w-6 text-primary" />
@@ -117,7 +110,7 @@ export default function GetInvolved() {
                         <CardTitle>{role.title}</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-muted-foreground">{role.description}</p>
+                        <p className="text-muted-foreground">{role.text}</p>
                       </CardContent>
                     </Card>
                   );
@@ -125,48 +118,37 @@ export default function GetInvolved() {
               </div>
 
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="font-bold mb-3">Requirements</h3>
+                <h3 className="font-bold mb-3">{requirements.title}</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    Must be 18+ or accompanied by parent/guardian
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    Complete online application and interview
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    Sign volunteer agreement and liability waiver
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    Attend orientation training at Animal Advocates headquarters
-                  </li>
+                  {requirements.items?.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
                 <div className="mt-6">
-                  <a
-                    href="https://new.shelterluv.com/form/volunteer/AAPA/126137-volunteer"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white">
-                      Apply to Volunteer Now
-                    </Button>
-                  </a>
+                  {requirements.ctas?.map((cta) => (
+                    <CtaLink key={cta.href} href={cta.href}>
+                      <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-white">
+                        {cta.label}
+                      </Button>
+                    </CtaLink>
+                  ))}
                 </div>
               </div>
 
               <Card className="bg-accent/5">
                 <CardContent className="p-6">
-                  <h3 className="font-bold mb-2">Can't Commit to a Scheduled Position?</h3>
+                  <h3 className="font-bold mb-2">{cantCommit.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Supporters who want to help but cannot commit to a scheduled position can host supply drives,
-                    donation drives, or community events.
+                    {cantCommit.text}
                   </p>
-                  <a href="mailto:animaladvocatespgh294@gmail.com">
-                    <Button variant="outline">Contact Us to Learn More</Button>
-                  </a>
+                  {cantCommit.ctas?.map((cta) => (
+                    <CtaLink key={cta.href} href={cta.href}>
+                      <Button variant="outline">{cta.label}</Button>
+                    </CtaLink>
+                  ))}
                 </CardContent>
               </Card>
             </div>
@@ -175,27 +157,21 @@ export default function GetInvolved() {
           {/* Tab 2: Senior to Senior Foster Program */}
           <TabsContent value="senior-program">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Senior to Senior Foster Program — Pittsburgh</h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Our Senior to Senior Foster Program pairs senior pets with senior community
-                members for fostering, helping both humans and animals thrive in their golden years. Animal Advocates
-                covers vet care and supplies.
-              </p>
+              <h2 className="text-3xl font-bold mb-6">{seniorProgram.title}</h2>
+              {seniorProgram.paragraphs?.map((paragraph, index) => (
+                <p key={index} className="text-lg text-muted-foreground mb-8">
+                  {paragraph}
+                </p>
+              ))}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <Card>
                   <CardHeader>
-                    <CardTitle>Benefits to Seniors</CardTitle>
+                    <CardTitle>{seniorBenefits.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-3">
-                      {[
-                        "Companionship from a loving, calm pet",
-                        "Lower-energy pets perfect for seniors",
-                        "All supplies and vet care provided",
-                        "No long-term commitment required",
-                        "Support from our volunteer team",
-                      ].map((benefit, index) => (
+                      {seniorBenefits.items?.map((benefit, index) => (
                         <li key={index} className="flex items-start gap-2 text-sm">
                           <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                           <span>{benefit}</span>
@@ -207,33 +183,33 @@ export default function GetInvolved() {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Eligibility & How to Apply</CardTitle>
+                    <CardTitle>{seniorEligibility.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
-                      The program is open to Pittsburgh-area seniors who can provide a safe, loving home for a
-                      senior pet. No prior pet ownership required.
+                      {seniorEligibility.text}
                     </p>
-                    <a href="mailto:animaladvocatespgh294@gmail.com">
-                      <Button className="w-full">Contact Us to Apply</Button>
-                    </a>
+                    {seniorEligibility.ctas?.map((cta) => (
+                      <CtaLink key={cta.href} href={cta.href}>
+                        <Button className="w-full">{cta.label}</Button>
+                      </CtaLink>
+                    ))}
                   </CardContent>
                 </Card>
               </div>
 
               <Card className="bg-secondary/10">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-bold mb-4">Cool Story: Connie & Chester</h3>
+                  <h3 className="text-xl font-bold mb-4">{seniorStory.title}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                     <div className="w-full h-48 bg-secondary/20 rounded-lg flex items-center justify-center">
                       <span className="text-7xl">🐱</span>
                     </div>
                     <div className="md:col-span-2">
                       <p className="text-muted-foreground italic mb-4">
-                        "Chester has brought so much joy to my life. As a senior myself, having a calm, loving
-                        companion makes every day brighter. The Senior to Senior program is truly special."
+                        {storyQuote}
                       </p>
-                      <p className="text-sm font-medium">— Connie, Pittsburgh Senior Foster</p>
+                      <p className="text-sm font-medium">{storyAttribution}</p>
                     </div>
                   </div>
                 </CardContent>

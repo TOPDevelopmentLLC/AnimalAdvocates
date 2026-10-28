@@ -6,18 +6,31 @@ import { Input } from "../components/ui/input";
 import { Skeleton } from "../components/ui/skeleton";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { HeroSlideshow } from "../components/HeroSlideshow";
+import { CtaLink } from "../components/TopLinks";
 import { useAnimalsContext } from "../lib/AnimalsContext";
+import { useTopContent, type BodyTextData, type HeroData, type TitleTextData } from "../lib/topContent";
+import homeContent from "../../../top-content/home.json";
 
-// Background slideshow images for the hero. Files live in /public.
-const heroImages = [
-  "/logo-with-kitten.webp",
-  "/Alfredo.webp",
-  "/sleepy-kitty.webp",
-  "/keyboard-sleepy-kitty.webp",
+const statIds = ["stat-years", "stat-volunteer", "stat-no-kill", "stat-nonprofit"];
+
+// Feature card section ids, plus any extra image class the card needs.
+const featureCards = [
+  { id: "feature-cats", imageClass: "object-top" },
+  { id: "feature-dogs", imageClass: "" },
+  { id: "feature-foster", imageClass: "" },
+  { id: "feature-thrift", imageClass: "" },
 ];
 
 export default function Home() {
   const { cats, dogs, loading, error } = useAnimalsContext();
+  const { section } = useTopContent("home", homeContent);
+  const hero = section<HeroData>("hero");
+  const about = section<BodyTextData>("about");
+  const featured = section<TitleTextData>("featured-pets");
+  const waysToHelp = section<BodyTextData>("ways-to-help");
+  const helpDonate = section<TitleTextData>("help-donate");
+  const helpVolunteer = section<TitleTextData>("help-volunteer");
+  const helpFoster = section<TitleTextData>("help-foster");
   // Interleave cats and dogs so the featured row isn't all one species, then
   // take the first 4 available animals from the API.
   const featuredPets: typeof cats = [];
@@ -49,27 +62,30 @@ export default function Home() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative bg-primary text-white min-h-[60vh] py-16 flex items-center">
-        <HeroSlideshow images={heroImages} />
+        <HeroSlideshow images={hero.images ?? []} />
         {/* Dark gradient overlay keeps the white text readable over photos. */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary/30" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Pittsburgh's Cat & Dog Rescue Since 1984
+            {hero.title}
           </h1>
           <p className="text-xl lg:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
-            Compassion in action — rescuing, fostering, and rehoming companion animals across the Pittsburgh region for over 40 years
+            {hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/adopt">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-white w-full sm:w-auto">
-                Meet Adoptable Pets
-              </Button>
-            </Link>
-            <Link to="/donate">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white hover:bg-white/90 text-primary hover:text-primary border-white">
-                Donate Now
-              </Button>
-            </Link>
+            {hero.ctas?.map((cta, index) => (
+              <CtaLink key={cta.href + index} href={cta.href}>
+                {index === 0 ? (
+                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white w-full sm:w-auto">
+                    {cta.label}
+                  </Button>
+                ) : (
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white hover:bg-white/90 text-primary hover:text-primary border-white">
+                    {cta.label}
+                  </Button>
+                )}
+              </CtaLink>
+            ))}
           </div>
         </div>
       </section>
@@ -78,22 +94,15 @@ export default function Home() {
       <section className="bg-white py-8 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary">40+</div>
-              <div className="text-sm text-muted-foreground mt-1">Years Serving Pittsburgh</div>
-            </div>
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary">100%</div>
-              <div className="text-sm text-muted-foreground mt-1">Volunteer-Run</div>
-            </div>
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary">No-Kill</div>
-              <div className="text-sm text-muted-foreground mt-1">Since 1984</div>
-            </div>
-            <div>
-              <div className="text-3xl lg:text-4xl font-bold text-primary">501(c)(3)</div>
-              <div className="text-sm text-muted-foreground mt-1">Nonprofit</div>
-            </div>
+            {statIds.map((id) => {
+              const stat = section<TitleTextData>(id);
+              return (
+                <div key={id}>
+                  <div className="text-3xl lg:text-4xl font-bold text-primary">{stat.title}</div>
+                  <div className="text-sm text-muted-foreground mt-1">{stat.text}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -102,15 +111,14 @@ export default function Home() {
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">
-            About Pittsburgh's Volunteer Animal Rescue
+            {about.title}
           </h2>
           <div className="max-w-4xl mx-auto">
-            <p className="text-lg mb-6 text-foreground/80">
-              Animal Advocates is a nonprofit, all-volunteer, Pittsburgh-based animal welfare organization involved in the rescue, care, and placement of companion cats and dogs. Serving the Pittsburgh area since 1984, we have adhered to a no-kill policy and engaged in community-based advocacy on behalf of animals since our inception.
-            </p>
-            <p className="text-lg mb-6 text-foreground/80">
-              We aim to provide high-quality care for the well-being of rescued cats and dogs until they are placed in forever homes. Except for a limited number of cats fostered at our headquarters in the West End, our adoptable animals are cared for in loving volunteer foster homes.
-            </p>
+            {about.paragraphs?.map((paragraph, index) => (
+              <p key={index} className="text-lg mb-6 text-foreground/80">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -119,89 +127,32 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link to="/adopt/cats">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                    <ImageWithFallback
-                      src="/blep.webp"
-                      alt="Rescued gray kitten sticking out its tongue"
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Adopt a Cat</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Browse our adoptable cats and kittens. All are vetted and vaccinated.
-                  </p>
-                  <span className="text-primary hover:underline text-sm font-medium">
-                    Learn more →
-                  </span>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link to="/adopt/dogs">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                    <ImageWithFallback
-                      src="/Daisy.webp"
-                      alt="Adoptable dog Daisy"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Adopt a Dog</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Find your perfect canine companion. All dogs are fully vetted and socialized in foster homes.
-                  </p>
-                  <span className="text-primary hover:underline text-sm font-medium">
-                    Learn more →
-                  </span>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link to="/get-involved">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                    <ImageWithFallback
-                      src="/foster.webp"
-                      alt="Volunteer holding a rescued foster kitten"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Foster Saves Lives</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Become a foster family and help animals thrive in a home environment while awaiting adoption.
-                  </p>
-                  <span className="text-primary hover:underline text-sm font-medium">
-                    Learn more →
-                  </span>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link to="/thrift-shop">
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <CardContent className="p-6">
-                  <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
-                    <ImageWithFallback
-                      src="/entrance.webp"
-                      alt="Animal Advocates Thrift Shoppe storefront entrance"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Visit Our Thrift Shop</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Shop vintage, designer items, and housewares. 100% of sales support animal rescue.
-                  </p>
-                  <span className="text-primary hover:underline text-sm font-medium">
-                    Learn more →
-                  </span>
-                </CardContent>
-              </Card>
-            </Link>
+            {featureCards.map(({ id, imageClass }) => {
+              const card = section<TitleTextData>(id);
+              const cta = card.ctas?.[0];
+              return (
+                <CtaLink key={id} href={cta?.href ?? "/"}>
+                  <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
+                    <CardContent className="p-6">
+                      <div className="w-full h-48 bg-secondary/20 rounded-lg mb-4 overflow-hidden">
+                        <ImageWithFallback
+                          src={card.image?.src}
+                          alt={card.image?.alt}
+                          className={`w-full h-full object-cover${imageClass ? ` ${imageClass}` : ""}`}
+                        />
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">{card.title}</h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {card.text}
+                      </p>
+                      <span className="text-primary hover:underline text-sm font-medium">
+                        {cta?.label}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </CtaLink>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -209,7 +160,7 @@ export default function Home() {
       {/* Featured Adoptable Pets */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Adoptable Pets</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{featured.title}</h2>
 
           {error && (
             <p className="text-center text-muted-foreground">{error}</p>
@@ -266,14 +217,16 @@ export default function Home() {
 
           {!loading && !error && featuredPets.length === 0 && (
             <p className="text-center text-muted-foreground">
-              Check back soon for pets available for adoption!
+              {featured.text}
             </p>
           )}
 
           <div className="text-center mt-10">
-            <Link to="/adopt">
-              <Button size="lg" variant="outline">View All Adoptable Pets</Button>
-            </Link>
+            {featured.ctas?.map((cta) => (
+              <CtaLink key={cta.href} href={cta.href}>
+                <Button size="lg" variant="outline">{cta.label}</Button>
+              </CtaLink>
+            ))}
           </div>
         </div>
       </section>
@@ -281,45 +234,51 @@ export default function Home() {
       {/* Ways to Help */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Ways to Help</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{waysToHelp.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Donate</h3>
+              <h3 className="text-xl font-bold mb-2">{helpDonate.title}</h3>
               <p className="text-muted-foreground mb-4">
-                Your gift provides vet care, food, and shelter for rescued animals. 100% volunteer-run means every dollar goes directly to animals.
+                {helpDonate.text}
               </p>
-              <Link to="/donate">
-                <Button className="bg-accent hover:bg-accent/90">Donate Now</Button>
-              </Link>
+              {helpDonate.ctas?.map((cta) => (
+                <CtaLink key={cta.href} href={cta.href}>
+                  <Button className="bg-accent hover:bg-accent/90">{cta.label}</Button>
+                </CtaLink>
+              ))}
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Volunteer</h3>
+              <h3 className="text-xl font-bold mb-2">{helpVolunteer.title}</h3>
               <p className="text-muted-foreground mb-4">
-                Join our dedicated team of volunteers. Help with foster care, transportation, thrift shop, or fundraising.
+                {helpVolunteer.text}
               </p>
-              <Link to="/get-involved">
-                <Button variant="outline">Get Involved</Button>
-              </Link>
+              {helpVolunteer.ctas?.map((cta) => (
+                <CtaLink key={cta.href} href={cta.href}>
+                  <Button variant="outline">{cta.label}</Button>
+                </CtaLink>
+              ))}
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <HomeIcon className="h-8 w-8 text-secondary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Foster</h3>
+              <h3 className="text-xl font-bold mb-2">{helpFoster.title}</h3>
               <p className="text-muted-foreground mb-4">
-                Open your home temporarily to a cat or dog. We provide supplies and vet care - you provide love and care.
+                {helpFoster.text}
               </p>
-              <Link to="/get-involved">
-                <Button variant="outline">Learn About Fostering</Button>
-              </Link>
+              {helpFoster.ctas?.map((cta) => (
+                <CtaLink key={cta.href} href={cta.href}>
+                  <Button variant="outline">{cta.label}</Button>
+                </CtaLink>
+              ))}
             </div>
           </div>
         </div>

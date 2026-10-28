@@ -1,0 +1,206 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Pittsburgh's Cat & Dog Rescue Since 1984",
+        "subtitle": "Compassion in action — rescuing, fostering, and rehoming companion animals across the Pittsburgh region for over 40 years",
+        "images": [
+          "/logo-with-kitten.webp",
+          "/Alfredo.webp",
+          "/sleepy-kitty.webp",
+          "/keyboard-sleepy-kitty.webp"
+        ],
+        "ctas": [
+          {
+            "label": "Meet Adoptable Pets",
+            "href": "/adopt"
+          },
+          {
+            "label": "Donate Now",
+            "href": "/donate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stat-years",
+      "type": "titleText",
+      "data": {
+        "title": "40+",
+        "text": "Years Serving Pittsburgh"
+      }
+    },
+    {
+      "id": "stat-volunteer",
+      "type": "titleText",
+      "data": {
+        "title": "100%",
+        "text": "Volunteer-Run"
+      }
+    },
+    {
+      "id": "stat-no-kill",
+      "type": "titleText",
+      "data": {
+        "title": "No-Kill",
+        "text": "Since 1984"
+      }
+    },
+    {
+      "id": "stat-nonprofit",
+      "type": "titleText",
+      "data": {
+        "title": "501(c)(3)",
+        "text": "Nonprofit"
+      }
+    },
+    {
+      "id": "about",
+      "type": "bodyText",
+      "data": {
+        "title": "About Pittsburgh's Volunteer Animal Rescue",
+        "paragraphs": [
+          "Animal Advocates is a nonprofit, all-volunteer, Pittsburgh-based animal welfare organization involved in the rescue, care, and placement of companion cats and dogs. Serving the Pittsburgh area since 1984, we have adhered to a no-kill policy and engaged in community-based advocacy on behalf of animals since our inception.",
+          "We aim to provide high-quality care for the well-being of rescued cats and dogs until they are placed in forever homes. Except for a limited number of cats fostered at our headquarters in the West End, our adoptable animals are cared for in loving volunteer foster homes."
+        ]
+      }
+    },
+    {
+      "id": "feature-cats",
+      "type": "titleText",
+      "data": {
+        "title": "Adopt a Cat",
+        "text": "Browse our adoptable cats and kittens. All are vetted and vaccinated.",
+        "image": {
+          "src": "/blep.webp",
+          "alt": "Rescued gray kitten sticking out its tongue"
+        },
+        "ctas": [
+          {
+            "label": "Learn more →",
+            "href": "/adopt/cats"
+          }
+        ]
+      }
+    },
+    {
+      "id": "feature-dogs",
+      "type": "titleText",
+      "data": {
+        "title": "Adopt a Dog",
+        "text": "Find your perfect canine companion. All dogs are fully vetted and socialized in foster homes.",
+        "image": {
+          "src": "/Daisy.webp",
+          "alt": "Adoptable dog Daisy"
+        },
+        "ctas": [
+          {
+            "label": "Learn more →",
+            "href": "/adopt/dogs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "feature-foster",
+      "type": "titleText",
+      "data": {
+        "title": "Foster Saves Lives",
+        "text": "Become a foster family and help animals thrive in a home environment while awaiting adoption.",
+        "image": {
+          "src": "/foster.webp",
+          "alt": "Volunteer holding a rescued foster kitten"
+        },
+        "ctas": [
+          {
+            "label": "Learn more →",
+            "href": "/get-involved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "feature-thrift",
+      "type": "titleText",
+      "data": {
+        "title": "Visit Our Thrift Shop",
+        "text": "Shop vintage, designer items, and housewares. 100% of sales support animal rescue.",
+        "image": {
+          "src": "/entrance.webp",
+          "alt": "Animal Advocates Thrift Shoppe storefront entrance"
+        },
+        "ctas": [
+          {
+            "label": "Learn more →",
+            "href": "/thrift-shop"
+          }
+        ]
+      }
+    },
+    {
+      "id": "featured-pets",
+      "type": "titleText",
+      "data": {
+        "title": "Featured Adoptable Pets",
+        "text": "Check back soon for pets available for adoption!",
+        "ctas": [
+          {
+            "label": "View All Adoptable Pets",
+            "href": "/adopt"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ways-to-help",
+      "type": "bodyText",
+      "data": {
+        "title": "Ways to Help"
+      }
+    },
+    {
+      "id": "help-donate",
+      "type": "titleText",
+      "data": {
+        "title": "Donate",
+        "text": "Your gift provides vet care, food, and shelter for rescued animals. 100% volunteer-run means every dollar goes directly to animals.",
+        "ctas": [
+          {
+            "label": "Donate Now",
+            "href": "/donate"
+          }
+        ]
+      }
+    },
+    {
+      "id": "help-volunteer",
+      "type": "titleText",
+      "data": {
+        "title": "Volunteer",
+        "text": "Join our dedicated team of volunteers. Help with foster care, transportation, thrift shop, or fundraising.",
+        "ctas": [
+          {
+            "label": "Get Involved",
+            "href": "/get-involved"
+          }
+        ]
+      }
+    },
+    {
+      "id": "help-foster",
+      "type": "titleText",
+      "data": {
+        "title": "Foster",
+        "text": "Open your home temporarily to a cat or dog. We provide supplies and vet care - you provide love and care.",
+        "ctas": [
+          {
+            "label": "Learn About Fostering",
+            "href": "/get-involved"
+          }
+        ]
+      }
+    }
+  ]
+}

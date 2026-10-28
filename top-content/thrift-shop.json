@@ -1,0 +1,107 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Pittsburgh Animal Rescue Thrift Shop",
+        "subtitle": "Whether you're looking for a one-of-a-kind collectible, gently-used clothing, housewares, or pet products, support animal rescue in Pittsburgh by shopping at our resale boutique resale boutique. 100% of sales benefit the rescue and care of animals in need."
+      }
+    },
+    {
+      "id": "hours",
+      "type": "bodyText",
+      "data": {
+        "title": "Shop Hours",
+        "items": [
+          "Monday: 12:00 PM - 3:00 PM",
+          "Tuesday: 12:00 PM - 3:00 PM",
+          "Wednesday: 12:00 PM - 3:00 PM",
+          "Thursday: 12:00 PM - 3:00 PM",
+          "Friday: 12:00 PM - 3:00 PM",
+          "Saturday: 12:00 PM - 4:00 PM",
+          "Sunday: Closed"
+        ],
+        "paragraphs": [
+          "Note: These hours are for the Thrift Shop only. All animal meet-and-greets are by appointment. Check Facebook or join our mailing list for sale dates and hours updates."
+        ]
+      }
+    },
+    {
+      "id": "location",
+      "type": "bodyText",
+      "data": {
+        "title": "Location",
+        "items": [
+          "Animal Advocates Thrift Shop",
+          "35 Wabash Street",
+          "Pittsburgh, PA 15220",
+          "West End neighborhood"
+        ],
+        "ctas": [
+          {
+            "label": "Get directions",
+            "href": "https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
+          }
+        ]
+      }
+    },
+    {
+      "id": "donate-items",
+      "type": "bodyText",
+      "data": {
+        "title": "Donate Items to Our Thrift Shop"
+      }
+    },
+    {
+      "id": "accepted",
+      "type": "bodyText",
+      "data": {
+        "title": "✓ Accepted Donations",
+        "items": [
+          "gently-used clothing (women’s clothing only, no pants)",
+          "jewelry",
+          "collectibles",
+          "vintage pieces",
+          "housewares",
+          "themed decorations (in season)",
+          "small appliances and kitchenware items"
+        ]
+      }
+    },
+    {
+      "id": "not-accepted",
+      "type": "bodyText",
+      "data": {
+        "title": "✗ Not Accepted",
+        "items": [
+          "oversized items such as large appliances or furniture",
+          "computers or printers",
+          "books/magazines, DVDs, CDs and cassette tapes",
+          "used cushions/anything with stuffing",
+          "men’s & children’s clothing",
+          "items that are broken, stained, torn or missing parts"
+        ]
+      }
+    },
+    {
+      "id": "donation-info",
+      "type": "bodyText",
+      "data": {
+        "title": "Important Donation Information",
+        "items": [
+          "All larger donations require an appointment. Call 412-928-9777 during open hours.",
+          "All donations are tax-deductible 501(3)(c).",
+          "Drop-off during Thrift Shop hours at 35 Wabash Street, Pittsburgh, PA 15220.",
+          "Since its founding in 1984, Animal Advocates has remained committed to a no-kill policy and advocacy on behalf of animals. In accordance with this philosophy and our mission statement, please be advised that we do not accept donations of merchandise made from animal products, such as fur, leather, down or silk."
+        ],
+        "ctas": [
+          {
+            "label": "412-928-9777",
+            "href": "tel:412-928-9777"
+          }
+        ]
+      }
+    }
+  ]
+}

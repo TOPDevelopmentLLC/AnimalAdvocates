@@ -1,0 +1,133 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Get Involved with Animal Rescue in Pittsburgh",
+        "subtitle": "At the heart of Animal Advocates is our dedicated team of volunteers. With no compensated staff, the collective efforts of our volunteers is invaluable to saving the lives of animals in need across the Pittsburgh region."
+      }
+    },
+    {
+      "id": "opportunities",
+      "type": "bodyText",
+      "data": {
+        "title": "Volunteer Opportunities in Pittsburgh"
+      }
+    },
+    {
+      "id": "role-foster",
+      "type": "titleText",
+      "data": {
+        "title": "Foster a Cat or Dog",
+        "text": "Provide temporary in-home care for animals awaiting adoption. Ideal for families and students. We provide supplies and vet care."
+      }
+    },
+    {
+      "id": "role-caretaker",
+      "type": "titleText",
+      "data": {
+        "title": "Cat Caretaker & Animal Transportation",
+        "text": "Provide basic care and socialization at headquarters. Transport animals to vet appointments and between shelters/homes."
+      }
+    },
+    {
+      "id": "role-thrift",
+      "type": "titleText",
+      "data": {
+        "title": "Thrift Shop Sales",
+        "text": "Staff the West End boutique, price merchandise, and welcome customers. Provides our largest single revenue source."
+      }
+    },
+    {
+      "id": "role-fundraising",
+      "type": "titleText",
+      "data": {
+        "title": "Fundraising & Outreach",
+        "text": "Plan and staff fundraisers, community outreach events, and advocacy programs to support animal welfare."
+      }
+    },
+    {
+      "id": "requirements",
+      "type": "bodyText",
+      "data": {
+        "title": "Requirements",
+        "items": [
+          "Must be 18+ or accompanied by parent/guardian",
+          "Complete online application and interview",
+          "Sign volunteer agreement and liability waiver",
+          "Attend orientation training at Animal Advocates headquarters"
+        ],
+        "ctas": [
+          {
+            "label": "Apply to Volunteer Now",
+            "href": "https://new.shelterluv.com/form/volunteer/AAPA/126137-volunteer"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cant-commit",
+      "type": "titleText",
+      "data": {
+        "title": "Can't Commit to a Scheduled Position?",
+        "text": "Supporters who want to help but cannot commit to a scheduled position can host supply drives, donation drives, or community events.",
+        "ctas": [
+          {
+            "label": "Contact Us to Learn More",
+            "href": "mailto:animaladvocatespgh294@gmail.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "senior-program",
+      "type": "bodyText",
+      "data": {
+        "title": "Senior to Senior Foster Program — Pittsburgh",
+        "paragraphs": [
+          "Our Senior to Senior Foster Program pairs senior pets with senior community members for fostering, helping both humans and animals thrive in their golden years. Animal Advocates covers vet care and supplies."
+        ]
+      }
+    },
+    {
+      "id": "senior-benefits",
+      "type": "bodyText",
+      "data": {
+        "title": "Benefits to Seniors",
+        "items": [
+          "Companionship from a loving, calm pet",
+          "Lower-energy pets perfect for seniors",
+          "All supplies and vet care provided",
+          "No long-term commitment required",
+          "Support from our volunteer team"
+        ]
+      }
+    },
+    {
+      "id": "senior-eligibility",
+      "type": "titleText",
+      "data": {
+        "title": "Eligibility & How to Apply",
+        "text": "The program is open to Pittsburgh-area seniors who can provide a safe, loving home for a senior pet. No prior pet ownership required.",
+        "ctas": [
+          {
+            "label": "Contact Us to Apply",
+            "href": "mailto:animaladvocatespgh294@gmail.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "senior-story",
+      "type": "bodyText",
+      "data": {
+        "title": "Cool Story: Connie & Chester",
+        "paragraphs": [
+          "\"Chester has brought so much joy to my life. As a senior myself, having a calm, loving companion makes every day brighter. The Senior to Senior program is truly special.\"",
+          "— Connie, Pittsburgh Senior Foster"
+        ]
+      }
+    }
+  ]
+}
