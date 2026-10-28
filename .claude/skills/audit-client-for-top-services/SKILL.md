@@ -31,7 +31,7 @@ Also read `routes.tsx` (or equivalent) to list every page.
 | Contact/inquiry form | Email via contact-form Lambda (check brand exists in `EmailService.AppBrand` and `lambda/contact-form/index.mjs` in TOP_Dev_Services) |
 | Hardcoded hero/headline/paragraph/list copy | Content CMS sections |
 | News/articles/stories array | Blogs |
-| Upcoming events array, external RSVP links | Events (+ Tickets, Coupons) |
+| Upcoming events array, external RSVP links | Events via the events Lambda (`add-events-to-client`); Tickets, Coupons |
 | Items for sale, external storefronts | Products + Categories + Orders |
 | Donate/pay buttons to external checkouts | Payments (Stripe) — note JWT requirement |
 | Images in `/public` that staff need to change | Images (S3) |

@@ -3,8 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Heart, Truck, ShoppingBag, Megaphone, Calendar, CheckCircle2 } from "lucide-react";
+import { Skeleton } from "../components/ui/skeleton";
 import { CtaLink } from "../components/TopLinks";
 import { useTopContent, type BodyTextData, type HeroData, type TitleTextData } from "../lib/topContent";
+import { eventDateParts, formatEventPrice, useUpcomingEvents } from "../lib/topEvents";
 import getInvolvedContent from "../../../top-content/get-involved.json";
 
 const VALID_TABS = ["opportunities", "senior-program", "events"];
@@ -31,41 +33,6 @@ export default function GetInvolved() {
   const seniorEligibility = section<TitleTextData>("senior-eligibility");
   const seniorStory = section<BodyTextData>("senior-story");
   const [storyQuote, storyAttribution] = seniorStory.paragraphs ?? [];
-
-  // Events tab copy stays here until events come from the TOP Events service.
-  const upcomingEvents = [
-    {
-      title: "Hauntingly Handmade: Black Cat Silhouette Workshop",
-      date: "October 18, 2026",
-      time: "2:00 PM - 3:30 PM",
-      location: "35 Wabash Street, Pittsburgh, PA 15220",
-      description:
-        "Feeling creative? Want to embrace the spooky season? Swing by to make your own spooky cat decor with us! Register by scanning the QR code on our event flyer.",
-    },
-    {
-      title: "Cat Open House",
-      date: "October 31, 2026",
-      time: "12:00 PM - 4:00 PM",
-      location: "35 Wabash Street, Pittsburgh, PA 15220",
-      description:
-        "Come visit with our adorable, adoptable cats! A flight of stairs is required to reach the cats, and any children under 18 must be accompanied by an adult. We will also have a sale, so save some time to browse our thrift shop!",
-    },
-    {
-      title: "Super Sale & Cat Open House",
-      date: "November 28, 2026",
-      time: "12:00 PM - 4:00 PM",
-      location: "35 Wabash Street, Pittsburgh, PA 15220",
-      description:
-        "Come visit with our cats and enjoy our Super Sale, with items half off for Small Business Saturday!",
-    },
-    {
-      title: "Handmade for the Holidays: A Cat-Themed Wrapping Paper Workshop",
-      date: "December 12, 2026",
-      time: "6:00 PM - 7:30 PM",
-      location: "35 Wabash Street, Pittsburgh, PA 15220",
-      description: "Hand craft some gift wrap with cute cat themes for the holidays! Tickets are $10.",
-    },
-  ];
 
   return (
     <div className="flex flex-col">
@@ -222,66 +189,7 @@ export default function GetInvolved() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Upcoming Events for Animal Advocates</h2>
 
-              {upcomingEvents.length > 0 ? (
-                <div className="space-y-6 mb-12">
-                  {upcomingEvents.map((event, index) => {
-                    const [month, dayWithComma] = event.date.split(" ");
-                    const day = dayWithComma.replace(",", "");
-                    return (
-                    <Card key={index}>
-                      <CardContent className="p-6">
-                        <div className="flex flex-col md:flex-row gap-6">
-                          <div className="w-full md:w-32 h-32 bg-secondary/20 rounded-lg flex flex-col items-center justify-center flex-shrink-0">
-                            <Calendar className="h-8 w-8 text-primary mb-2" />
-                            <div className="text-center">
-                              <div className="font-bold text-2xl leading-none">{day}</div>
-                              <div className="text-xs text-muted-foreground mt-1">{month}</div>
-                            </div>
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-                            <div className="text-sm text-muted-foreground mb-2">
-                              <strong>Time:</strong> {event.time}
-                            </div>
-                            <div className="text-sm text-muted-foreground mb-3">
-                              <strong>Location:</strong> {event.location}
-                            </div>
-                            <p className="text-muted-foreground">{event.description}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                    );
-                  })}
-                </div>
-              ) : (
-                <Card className="mb-12">
-                  <CardContent className="p-12 text-center">
-                    <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                    <h3 className="font-bold text-xl mb-2">No Upcoming Events</h3>
-                    <p className="text-muted-foreground mb-6">
-                      Check back soon for upcoming Pittsburgh adoption events and fundraisers, or follow us on social
-                      media for the latest updates.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                      <a
-                        href="https://facebook.com/animaladvocatespgh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button variant="outline">Follow on Facebook</Button>
-                      </a>
-                      <a
-                        href="https://instagram.com/weareanimaladvocates"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button variant="outline">Follow on Instagram</Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
+              <UpcomingEvents />
 
               <div>
                 <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
@@ -296,5 +204,117 @@ export default function GetInvolved() {
         </Tabs>
       </div>
     </div>
+  );
+}
+
+/** Event list for the Events tab, loaded from the TOP events Lambda when the tab opens. */
+function UpcomingEvents() {
+  const { events, loading, error } = useUpcomingEvents();
+
+  if (loading) {
+    return (
+      <div className="space-y-6 mb-12" aria-busy="true">
+        {Array.from({ length: 2 }).map((_, index) => (
+          <Card key={index}>
+            <CardContent className="p-6">
+              <div className="flex flex-col md:flex-row gap-6">
+                <Skeleton className="w-full md:w-32 h-32 rounded-lg flex-shrink-0" />
+                <div className="flex-1 space-y-3">
+                  <Skeleton className="h-6 w-2/3" />
+                  <Skeleton className="h-4 w-1/3" />
+                  <Skeleton className="h-4 w-1/2" />
+                  <Skeleton className="h-4 w-full" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return <NoEventsCard title="Events Unavailable" message={error} />;
+  }
+
+  if (events.length === 0) {
+    return (
+      <NoEventsCard
+        title="No Upcoming Events"
+        message="Check back soon for upcoming Pittsburgh adoption events and fundraisers, or follow us on social media for the latest updates."
+      />
+    );
+  }
+
+  return (
+    <div className="space-y-6 mb-12">
+      {events.map((event) => {
+        const { month, day, time } = eventDateParts(event);
+        const price = formatEventPrice(event);
+        return (
+          <Card key={event.id}>
+            <CardContent className="p-6">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="w-full md:w-32 h-32 bg-secondary/20 rounded-lg flex flex-col items-center justify-center flex-shrink-0">
+                  <Calendar className="h-8 w-8 text-primary mb-2" />
+                  <div className="text-center">
+                    <div className="font-bold text-2xl leading-none">{day}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{month}</div>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+                  <div className="text-sm text-muted-foreground mb-2">
+                    <strong>Time:</strong> {time}
+                  </div>
+                  {event.location && (
+                    <div className="text-sm text-muted-foreground mb-2">
+                      <strong>Location:</strong> {event.location}
+                    </div>
+                  )}
+                  {price && (
+                    <div className="text-sm text-muted-foreground mb-2">
+                      <strong>Tickets:</strong> {price}
+                    </div>
+                  )}
+                  {event.spotsLeft === 0 && (
+                    <div className="text-sm font-medium text-accent mb-2">Sold out</div>
+                  )}
+                  <p className="text-muted-foreground mt-3 whitespace-pre-line">{event.description}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
+    </div>
+  );
+}
+
+function NoEventsCard({ title, message }: { title: string; message: string }) {
+  return (
+    <Card className="mb-12">
+      <CardContent className="p-12 text-center">
+        <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+        <h3 className="font-bold text-xl mb-2">{title}</h3>
+        <p className="text-muted-foreground mb-6">{message}</p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <a
+            href="https://facebook.com/animaladvocatespgh"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline">Follow on Facebook</Button>
+          </a>
+          <a
+            href="https://instagram.com/weareanimaladvocates"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline">Follow on Instagram</Button>
+          </a>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
