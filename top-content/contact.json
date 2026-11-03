@@ -1,0 +1,139 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "type": "hero",
+      "data": {
+        "title": "Contact Animal Advocates Pittsburgh",
+        "subtitle": "Have questions about adoption, volunteering, or our rescue? We'd love to hear from you."
+      }
+    },
+    {
+      "id": "contact-info",
+      "type": "bodyText",
+      "data": {
+        "title": "Contact Information"
+      }
+    },
+    {
+      "id": "address",
+      "type": "bodyText",
+      "data": {
+        "title": "Address",
+        "items": [
+          "35 Wabash Street",
+          "PO Box 8480",
+          "Pittsburgh, PA 15220"
+        ]
+      }
+    },
+    {
+      "id": "phone",
+      "type": "bodyText",
+      "data": {
+        "title": "Phone",
+        "ctas": [
+          {
+            "label": "412-928-9777",
+            "href": "tel:412-928-9777"
+          }
+        ]
+      }
+    },
+    {
+      "id": "email",
+      "type": "bodyText",
+      "data": {
+        "title": "Email",
+        "ctas": [
+          {
+            "label": "animaladvocatespgh294@gmail.com",
+            "href": "mailto:animaladvocatespgh294@gmail.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "newsletter",
+      "type": "bodyText",
+      "data": {
+        "title": "Newsletter",
+        "ctas": [
+          {
+            "label": "Sign up for our newsletter",
+            "href": "https://animaladvocates.us3.list-manage.com/subscribe?u=96c7d0868cf5fd024c6055a3d&id=4c3cbf2206"
+          }
+        ]
+      }
+    },
+    {
+      "id": "hours",
+      "type": "bodyText",
+      "data": {
+        "title": "Thrift Shop Hours",
+        "items": [
+          "Mon-Fri: 12:00 PM - 3:00 PM",
+          "Sat: 12:00 PM - 4:00 PM",
+          "Sun: Closed"
+        ],
+        "paragraphs": [
+          "Adoptions by appointment only"
+        ]
+      }
+    },
+    {
+      "id": "follow-us",
+      "type": "bodyText",
+      "data": {
+        "title": "Follow Us",
+        "ctas": [
+          {
+            "label": "@animaladvocatespgh",
+            "href": "https://facebook.com/animaladvocatespgh"
+          },
+          {
+            "label": "@weareanimaladvocates",
+            "href": "https://instagram.com/weareanimaladvocates"
+          }
+        ]
+      }
+    },
+    {
+      "id": "map",
+      "type": "bodyText",
+      "data": {
+        "ctas": [
+          {
+            "label": "Get directions",
+            "href": "https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
+          }
+        ]
+      }
+    },
+    {
+      "id": "form",
+      "type": "bodyText",
+      "data": {
+        "title": "Send Us a Message"
+      }
+    },
+    {
+      "id": "form-success",
+      "type": "bodyText",
+      "data": {
+        "paragraphs": [
+          "Thanks for reaching out! We'll get back to you soon."
+        ]
+      }
+    },
+    {
+      "id": "form-error",
+      "type": "bodyText",
+      "data": {
+        "paragraphs": [
+          "Something went wrong sending your message. Please try again, or email us directly."
+        ]
+      }
+    }
+  ]
+}
