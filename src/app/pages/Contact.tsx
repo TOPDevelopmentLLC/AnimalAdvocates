@@ -7,6 +7,16 @@ import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, ExternalLink, Send } from "lucide-react";
+import { CtaLink } from "../components/TopLinks";
+import { useTopContent, type BodyTextData, type HeroData } from "../lib/topContent";
+import contactContent from "../../../top-content/contact.json";
+
+/** Social icon for a "Follow Us" link, chosen from where it points. */
+function socialIcon(href: string) {
+  if (/facebook\.com/i.test(href)) return Facebook;
+  if (/instagram\.com/i.test(href)) return Instagram;
+  return ExternalLink;
+}
 
 // Proxies to https://api.thatoneprogrammer.dev/api/v1/email/send, injecting
 // the required X-API-KEY server-side so the browser never sees it.
@@ -30,6 +40,19 @@ export default function Contact() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const { section } = useTopContent("contact", contactContent);
+  const hero = section<HeroData>("hero");
+  const contactInfo = section<BodyTextData>("contact-info");
+  const address = section<BodyTextData>("address");
+  const phone = section<BodyTextData>("phone");
+  const email = section<BodyTextData>("email");
+  const newsletter = section<BodyTextData>("newsletter");
+  const hours = section<BodyTextData>("hours");
+  const followUs = section<BodyTextData>("follow-us");
+  const map = section<BodyTextData>("map");
+  const form = section<BodyTextData>("form");
+  const formSuccess = section<BodyTextData>("form-success");
+  const formError = section<BodyTextData>("form-error");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,9 +88,9 @@ export default function Contact() {
       {/* Hero */}
       <section className="bg-primary text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold mb-6">Contact Animal Advocates Pittsburgh</h1>
+          <h1 className="text-4xl font-bold mb-6">{hero.title}</h1>
           <p className="text-xl text-white/90">
-            Have questions about adoption, volunteering, or our rescue? We'd love to hear from you.
+            {hero.subtitle}
           </p>
         </div>
       </section>
@@ -76,7 +99,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+            <h2 className="text-2xl font-bold mb-6">{contactInfo.title}</h2>
             <Card className="mb-6">
               <CardContent className="p-6 space-y-6">
                 <div className="flex items-start gap-4">
@@ -84,11 +107,14 @@ export default function Contact() {
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1">Address</h3>
+                    <h3 className="font-bold mb-1">{address.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                      35 Wabash Street<br />
-                      PO Box 8480<br />
-                      Pittsburgh, PA 15220
+                      {address.items?.map((line, index) => (
+                        <span key={index}>
+                          {index > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
                     </p>
                   </div>
                 </div>
@@ -98,10 +124,12 @@ export default function Contact() {
                     <Phone className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1">Phone</h3>
-                    <a href="tel:412-928-9777" className="text-sm text-primary hover:underline">
-                      412-928-9777
-                    </a>
+                    <h3 className="font-bold mb-1">{phone.title}</h3>
+                    {phone.ctas?.map((cta) => (
+                      <CtaLink key={cta.href} href={cta.href} className="text-sm text-primary hover:underline">
+                        {cta.label}
+                      </CtaLink>
+                    ))}
                   </div>
                 </div>
 
@@ -110,13 +138,12 @@ export default function Contact() {
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1">Email</h3>
-                    <a
-                      href="mailto:animaladvocatespgh294@gmail.com"
-                      className="text-sm text-primary hover:underline break-all"
-                    >
-                      animaladvocatespgh294@gmail.com
-                    </a>
+                    <h3 className="font-bold mb-1">{email.title}</h3>
+                    {email.ctas?.map((cta) => (
+                      <CtaLink key={cta.href} href={cta.href} className="text-sm text-primary hover:underline break-all">
+                        {cta.label}
+                      </CtaLink>
+                    ))}
                   </div>
                 </div>
 
@@ -125,15 +152,12 @@ export default function Contact() {
                     <Send className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1">Newsletter</h3>
-                    <a
-                      href="https://animaladvocates.us3.list-manage.com/subscribe?u=96c7d0868cf5fd024c6055a3d&id=4c3cbf2206"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-primary hover:underline"
-                    >
-                      Sign up for our newsletter
-                    </a>
+                    <h3 className="font-bold mb-1">{newsletter.title}</h3>
+                    {newsletter.ctas?.map((cta) => (
+                      <CtaLink key={cta.href} href={cta.href} className="text-sm text-primary hover:underline">
+                        {cta.label}
+                      </CtaLink>
+                    ))}
                   </div>
                 </div>
 
@@ -142,39 +166,39 @@ export default function Contact() {
                     <Clock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold mb-1">Thrift Shop Hours</h3>
+                    <h3 className="font-bold mb-1">{hours.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Mon-Fri: 12:00 PM - 3:00 PM<br />
-                      Sat: 12:00 PM - 4:00 PM<br />
-                      Sun: Closed
+                      {hours.items?.map((line, index) => (
+                        <span key={index}>
+                          {index > 0 && <br />}
+                          {line}
+                        </span>
+                      ))}
                     </p>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Adoptions by appointment only
-                    </p>
+                    {hours.paragraphs?.map((paragraph, index) => (
+                      <p key={index} className="text-xs text-muted-foreground mt-2">
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
 
                 <div className="border-t pt-4">
-                  <h3 className="font-bold mb-3">Follow Us</h3>
+                  <h3 className="font-bold mb-3">{followUs.title}</h3>
                   <div className="flex gap-3">
-                    <a
-                      href="https://facebook.com/animaladvocatespgh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-primary hover:underline"
-                    >
-                      <Facebook className="h-4 w-4" />
-                      @animaladvocatespgh
-                    </a>
-                    <a
-                      href="https://instagram.com/weareanimaladvocates"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-primary hover:underline"
-                    >
-                      <Instagram className="h-4 w-4" />
-                      @weareanimaladvocates
-                    </a>
+                    {followUs.ctas?.map((cta) => {
+                      const Icon = socialIcon(cta.href);
+                      return (
+                        <CtaLink
+                          key={cta.href}
+                          href={cta.href}
+                          className="flex items-center gap-2 text-sm text-primary hover:underline"
+                        >
+                          <Icon className="h-4 w-4" />
+                          {cta.label}
+                        </CtaLink>
+                      );
+                    })}
                   </div>
                 </div>
               </CardContent>
@@ -190,21 +214,22 @@ export default function Contact() {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <a
-                href="https://maps.google.com/maps?q=35%20Wabash%20Street%2C%20Pittsburgh%2C%20PA%2015220"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
-              >
-                Get directions
-                <ExternalLink className="h-4 w-4" />
-              </a>
+              {map.ctas?.map((cta) => (
+                <CtaLink
+                  key={cta.href}
+                  href={cta.href}
+                  className="inline-flex items-center gap-1 mt-3 text-sm text-primary hover:underline"
+                >
+                  {cta.label}
+                  <ExternalLink className="h-4 w-4" />
+                </CtaLink>
+              ))}
             </div>
           </div>
 
           {/* Contact Form */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
+            <h2 className="text-2xl font-bold mb-6">{form.title}</h2>
             <Card>
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -281,12 +306,12 @@ export default function Contact() {
 
                   {status === "success" && (
                     <p className="text-sm text-primary">
-                      Thanks for reaching out! We'll get back to you soon.
+                      {formSuccess.paragraphs?.[0]}
                     </p>
                   )}
                   {status === "error" && (
                     <p className="text-sm text-destructive">
-                      Something went wrong sending your message. Please try again, or email us directly.
+                      {formError.paragraphs?.[0]}
                     </p>
                   )}
 
