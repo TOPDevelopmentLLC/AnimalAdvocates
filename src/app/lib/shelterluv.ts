@@ -59,6 +59,44 @@ export interface Animal {
 const DEV_BASE = "/api/shelterluv";
 const PROD_PROXY_URL = import.meta.env.VITE_SHELTERLUV_PROXY_URL as string | undefined;
 
+const MAX_FETCH_ATTEMPTS = 3;
+const RETRY_BASE_DELAY_MS = 500; // doubles each retry: 500ms, 1000ms
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * ShelterLuv's API intermittently fails for reasons we haven't been able to
+ * reproduce. Retry transparently with exponential backoff before giving up,
+ * so a single blip doesn't surface as a visible error to site visitors.
+ */
+async function fetchWithRetry(url: string, init: RequestInit): Promise<Response> {
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt < MAX_FETCH_ATTEMPTS; attempt++) {
+    if (init.signal?.aborted) {
+      throw new DOMException("Aborted", "AbortError");
+    }
+
+    try {
+      const res = await fetch(url, init);
+      if (res.ok) return res;
+      lastError = new Error(`Request to ${url} failed (${res.status})`);
+    } catch (err) {
+      if ((err as { name?: string })?.name === "AbortError") throw err;
+      lastError = err;
+    }
+
+    const isLastAttempt = attempt === MAX_FETCH_ATTEMPTS - 1;
+    if (!isLastAttempt) {
+      await sleep(RETRY_BASE_DELAY_MS * 2 ** attempt);
+    }
+  }
+
+  throw lastError;
+}
+
 /** Convert an age in months into a friendly "X years" / "Y months" string. */
 function formatAge(months: number): string {
   if (!months || months < 0) return "Unknown age";
@@ -119,13 +157,10 @@ export async function fetchAvailableAnimals(
   if (PROD_PROXY_URL) {
     // Production: the Lambda proxy already paginates, filters, and
     // normalizes server-side — one request gets the final list.
-    const res = await fetch(`${PROD_PROXY_URL}?type=${type}`, {
+    const res = await fetchWithRetry(`${PROD_PROXY_URL}?type=${type}`, {
       signal,
       headers: { Accept: "application/json" },
     });
-    if (!res.ok) {
-      throw new Error(`ShelterLuv proxy request failed (${res.status})`);
-    }
     const data: ProxyAnimalsResponse = await res.json();
     return data.animals;
   }
@@ -137,13 +172,10 @@ export async function fetchAvailableAnimals(
 
   // Guard against an unbounded loop if the API misbehaves.
   for (let page = 0; page < 50; page++) {
-    const res = await fetch(
+    const res = await fetchWithRetry(
       `${DEV_BASE}/animals?status_type=publishable&limit=${limit}&offset=${offset}`,
       { signal, headers: { Accept: "application/json" } }
     );
-    if (!res.ok) {
-      throw new Error(`ShelterLuv request failed (${res.status})`);
-    }
     const data: AnimalsResponse = await res.json();
     if (!data.success) {
       throw new Error("ShelterLuv returned an unsuccessful response");
